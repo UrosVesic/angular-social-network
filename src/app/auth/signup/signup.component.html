@@ -7,27 +7,36 @@
                     <h4>Register</h4>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form [formGroup] ="signupForm" (ngSubmit) = "signup()">
                         <div class="form-group row">
                             <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
                                 Address</label>
                             <div class="col-md-6">
-                                <input type="text" id="email_address" class="form-control" name="email-address" required
+                                <input type="text" [formControlName]="'email'" id="email_address" class="form-control" name="email-address" required
                                     autofocus>
+                                    <span *ngIf="!signupForm.get('email').valid && signupForm.get('email')!.touched ">
+                                        Please provide email
+                                    </span>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">User Name</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" required autofocus>
+                                <input type="text" [formControlName]="'username'" class="form-control" required autofocus>
+                                <span *ngIf="!signupForm.get('username').valid && signupForm.get('username')!.touched ">
+                                    Please provide username
+                                </span>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                             <div class="col-md-6">
-                                <input type="password" id="password" class="form-control" name="password" required>
+                                <input type="password" [formControlName]="'password'" id="password" class="form-control" name="password" required>
+                                <span *ngIf="!signupForm.get('password').valid && signupForm.get('password')!.touched ">
+                                    Please provide password
+                                </span>
                             </div>
                         </div>
 
