@@ -7,48 +7,52 @@ import { LoginRequestPayload } from './login-request.payload';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
-  loginForm : FormGroup;
+  loginForm: FormGroup;
   loginRequestPayload: LoginRequestPayload;
   registerSuccessMessage: string;
+  isError: boolean;
 
-  constructor(private authService: AuthService, private router: Router,
-    private activatedRoute: ActivatedRoute) { 
-      this.registerSuccessMessage ='';
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.isError = false;
+    this.registerSuccessMessage = '';
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', Validators.required),
     });
     this.loginRequestPayload = {
       username: '',
-      password: ''
+      password: '',
     };
-    this.activatedRoute.queryParams
-    .subscribe((params:any) => {
-      if (params['registered']!== undefined && params['registered'] === 'true') {
+    this.activatedRoute.queryParams.subscribe((params: any) => {
+      if (
+        params['registered'] !== undefined &&
+        params['registered'] === 'true'
+      ) {
         alert('Signup Successful');
       }
     });
-    
-    
   }
 
-  ngOnInit(): void {
-   
-  }
+  ngOnInit(): void {}
 
-  login(){
+  login() {
     this.loginRequestPayload.username = this.loginForm.get('username')!.value;
     this.loginRequestPayload.password = this.loginForm.get('password')!.value;
 
-    this.authService.login(this.loginRequestPayload).subscribe(data => {
-      alert('Login successful');
-      console.log('Login successful');
+    this.authService.login(this.loginRequestPayload).subscribe((data) => {
+      if (data) {
+        this.router.navigateByUrl('/');
+        alert('Login successful');
+      } else {
+        alert('Login unsuccessful');
+      }
     });
-
   }
-
 }
