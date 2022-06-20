@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^14.0.0",
+    "@angular/animations": "^14.0.2",
     "@angular/common": "^14.0.0",
     "@angular/compiler": "^14.0.0",
     "@angular/core": "^14.0.0",
@@ -20,6 +20,7 @@
     "@angular/router": "^14.0.0",
     "bootstrap": "^4.4.1",
     "jsonminify": "^0.4.2",
+    "ngx-webstorage": "^10.0.1",
     "rxjs": "~7.5.0",
     "zone.js": "~0.11.4"
   },
