@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { SignupRequestPaylaod } from './signup-request.payload';
 
@@ -15,7 +16,8 @@ export class SignupComponent implements OnInit {
 
 
 
-  constructor(private authService:AuthService) { 
+  constructor(private authService:AuthService, private router:Router,
+   ) { 
     this.signupForm = new FormGroup({
       username: new FormControl('',Validators.required),
       email: new FormControl('',Validators.required),
@@ -36,9 +38,13 @@ export class SignupComponent implements OnInit {
     this.signupRequestPayload.email = this.signupForm.get('email')!.value;
     this.signupRequestPayload.username = this.signupForm.get('username')!.value;
     this.signupRequestPayload.password = this.signupForm.get('password')!.value;
-    this.authService.signup(this.signupRequestPayload).subscribe(data=>{
-      console.log(data);
-    })
+    this.authService.signup(this.signupRequestPayload)
+    .subscribe(() => {
+      this.router.navigate(['/login'], { queryParams: { registered: 'true' } });
+    }, () => {
+      alert('Registration Failed! Please try again');
+      //this.toastr.error('Registration Failed! Please try again');
+    });
   }
 
 }
