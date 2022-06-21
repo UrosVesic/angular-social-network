@@ -10,6 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { HomeComponent } from './home/home.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PostComponent } from './shared/post/post.component';
+import { ReactionComponent } from './shared/reaction/reaction.component';
+import { SideComponent } from './shared/side/side.component';
+import { TopicSideComponent } from './shared/topic-side/topic-side.component';
 
 @NgModule({
   declarations: [
@@ -17,16 +22,21 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent,
     SignupComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    PostComponent,
+    ReactionComponent,
+    SideComponent,
+    TopicSideComponent,
   ],
   imports: [
     BrowserModule,
+    FontAwesomeModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
