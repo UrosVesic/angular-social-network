@@ -1,0 +1,29 @@
+.reactionbox {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  font-size: 1em;
+}
+
+.reactionsection {
+  margin: 0px;
+  background-color: #ffffff;
+}
+
+.like,
+.dislike {
+  cursor: pointer;
+  border-radius: 2px solid;
+}
+
+.like:hover {
+  color: green;
+}
+
+.dislike:hover {
+  color: red;
+}
+
+.reactioncount {
+  font-weight: bold;
+}
