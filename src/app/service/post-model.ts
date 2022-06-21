@@ -9,4 +9,5 @@ export interface PostModel {
   topicName: string;
   commentCount: number;
   duration: string;
+  likeCount: number;
 }
