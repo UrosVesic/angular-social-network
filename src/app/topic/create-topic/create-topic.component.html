@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="create-topic-container">
+      <form class="post-form" [formGroup]="createTopicForm" (ngSubmit)="createTopic()">
+        <div class="form-group">
+          <div class="create-topic-heading">Create Topic</div>
+          <hr />
+          <input type="text" [formControlName]="'name'" class="form-control" style="margin-top: 5px" placeholder="Name">
+          <span *ngIf="!createTopicForm.get('name')!.valid && createTopicForm.get('name')!.touched">
+            Please provide a Name
+          </span>
+          <textarea type="text" [formControlName]="'description'" style="width: 100%; margin-top: 5px"
+            placeholder="Description"></textarea>
+          <div>
+            <div style="margin-top: 5px" class="float-right">
+              <button (click)="discard()" class="btnDiscard">Discard</button>
+              <button class="btnCreateTopic">Create</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <div class="sidebar">
+        <h5 class="guidelines">Posting to Spring Network</h5>
+        <hr />
+        <ul>
+          <li>Remember the human</li>
+          <hr />
+          <li>Behave like you would in real life</li>
+          <hr />
+          <li>Don't spam</li>
+          <hr />
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
