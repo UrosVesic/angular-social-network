@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faComments,
   faThumbsDown,
@@ -19,7 +20,7 @@ export class PostComponent implements OnInit {
 
   posts$: Array<PostModel> = [];
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService, private router: Router) {
     this.postService.getAllPosts().subscribe((post) => {
       this.posts$ = post;
     });
@@ -27,5 +28,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  goToPost(id: number) {}
+  goToPost(id: number) {
+    this.router.navigateByUrl('/view-post/' + id);
+  }
 }
