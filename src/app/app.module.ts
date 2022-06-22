@@ -18,7 +18,7 @@ import { TopicSideComponent } from './shared/topic-side/topic-side.component';
 import { CreateTopicComponent } from './topic/create-topic/create-topic.component';
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { ListTopicsComponent } from './topic/list-topics/list-topics.component';
-import { TokenIntercepton } from './auth/token-interceptor';
+import { RequestInterceptor } from './auth/request-interceptor';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ViewPostComponent } from './post/view-post/view-post.component';
 
@@ -50,7 +50,7 @@ import { ViewPostComponent } from './post/view-post/view-post.component';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenIntercepton,
+      useClass: RequestInterceptor,
       multi: true,
     },
   ],
