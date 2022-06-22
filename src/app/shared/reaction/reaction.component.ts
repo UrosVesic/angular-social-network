@@ -4,7 +4,7 @@ import {
   faThumbsDown,
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons';
-import { PostModel } from 'src/app/service/post-model';
+import { PostModel } from 'src/app/post/post-model';
 
 @Component({
   selector: 'app-reaction',
