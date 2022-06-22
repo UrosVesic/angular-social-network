@@ -20,8 +20,7 @@ export class ReactionComponent implements OnInit {
   constructor() {
     this.post = {
       id: 0,
-      postName: '',
-      url: '',
+      title: '',
       content: '',
       commentCount: 0,
       dislikes: 0,
