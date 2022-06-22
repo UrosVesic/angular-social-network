@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <hr />
+    <div class="col-md-9">
+      <div class="row post">
+        <div class="col-md-1">
+          <app-reaction [post]="post"></app-reaction>
+        </div>
+        <div class="col-md-11">
+          <span>
+            <span class="topic-text"><a class="post-url" href="">{{post.topicName}}</a></span>
+            <span> . Posted
+              <span> {{post.duration}} </span>
+              by
+              <a *ngIf="post.userName === null" class="username" href="">Anonymous</a>
+              <a *ngIf="post.userName != null" class="username" href="">{{post.userName}}</a>
+            </span>
+          </span>
+          <hr />
+          <a class="post-title">{{post.title}}</a>
+          <div>
+            <p class="post-text" [innerHtml]="post.content"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <app-side></app-side>
+      <app-topic-side></app-topic-side>
+    </div>
+  </div>
+</div>
