@@ -5,8 +5,8 @@ import {
   faThumbsDown,
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons';
-import { PostModel } from 'src/app/service/post-model';
-import { PostService } from 'src/app/service/post.service';
+import { PostModel } from 'src/app/post/post-model';
+import { PostService } from 'src/app/post/service/post.service';
 
 @Component({
   selector: 'app-post',
