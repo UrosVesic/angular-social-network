@@ -3,7 +3,7 @@
   <!-- Section to Display Reactions-->
   <app-reaction [post]="post"></app-reaction>
   <!-- Section to Display Post Information-->
-  <div class="col-md-11">
+  <div class="col-md-10">
     <span class="topic-info">
       <span class="topic-text"><a class="posturl" routerLink="">{{post.topicName}}</a></span>
       <span> . Posted by <a class="username" routerLink="/user/{{post.userName}}">{{post.userName}}</a></span>
@@ -11,10 +11,10 @@
     </span>
     <hr />
     <div class="post-title">
-      <a class="postname" href="{{post.url}}">{{post.postName}}</a>
+      <a class="postname" href="/view-post/{{post.id}}">{{post.title}}</a>
     </div>
     <div>
-      <p class="post-text">{{post.content}}</p>
+      <p class="post-text" [innerHtml]="post.content"></p>
     </div>
     <hr />
     <span>
