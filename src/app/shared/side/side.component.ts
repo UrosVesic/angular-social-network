@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side.component.css'],
 })
 export class SideComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  goToCreatePost() {}
-  goToCreateTopic() {}
+  goToCreatePost() {
+    this.router.navigateByUrl('/create-post');
+  }
+  goToCreateTopic() {
+    this.router.navigateByUrl('/create-topic');
+  }
 }
