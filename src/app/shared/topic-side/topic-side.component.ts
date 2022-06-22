@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TopicModel } from 'src/app/topic/topic-response';
+import { TopicModel } from 'src/app/topic/topic-model';
 import { TopicService } from 'src/app/topic/topic.service';
 
 @Component({
