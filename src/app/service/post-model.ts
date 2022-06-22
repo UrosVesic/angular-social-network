@@ -1,7 +1,6 @@
 export interface PostModel {
   id: number;
-  postName: string;
-  url: string;
+  title: string;
   content: string;
   likes: number;
   dislikes: number;
