@@ -21,6 +21,8 @@ import { ListTopicsComponent } from './topic/list-topics/list-topics.component';
 import { RequestInterceptor } from './auth/request-interceptor';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ViewPostComponent } from './post/view-post/view-post.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { ViewPostComponent } from './post/view-post/view-post.component';
     CreatePostComponent,
     ListTopicsComponent,
     ViewPostComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,8 @@ import { ViewPostComponent } from './post/view-post/view-post.component';
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
     EditorModule,
+    NgbModule,
+    NgbModule,
   ],
   providers: [
     {
