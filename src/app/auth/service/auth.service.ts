@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SignupRequestPaylaod } from '../signup/signup-request.payload';
 import { map, Observable } from 'rxjs';
@@ -10,6 +10,8 @@ import { LoginResponse } from '../login/login-response.payload';
   providedIn: 'root',
 })
 export class AuthService {
+  @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
+  @Output() username: EventEmitter<string> = new EventEmitter();
   constructor(
     private httpClient: HttpClient,
     private localStorage: LocalStorageService
@@ -36,11 +38,25 @@ export class AuthService {
             data.authenticationToken
           );
           this.localStorage.store('username', data.username);
+          this.loggedIn.emit(true);
+          this.username.emit(loginRequestPayload.username);
           return true;
         })
       );
   }
   getJwtToken() {
     return this.localStorage.retrieve('authenticationToken');
+  }
+
+  isLogged(): boolean {
+    return this.getJwtToken() != null;
+  }
+
+  logout() {
+    this.localStorage.clear();
+  }
+
+  getUserName(): string {
+    return this.localStorage.retrieve('username');
   }
 }
