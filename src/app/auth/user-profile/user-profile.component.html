@@ -1,0 +1,12 @@
+<div class="container">
+  <div>
+    Welcome <b>{{username}}</b>.<br /> You have posted <b>{{postLength}}</b> time(s).
+    You can check your post history below.
+  </div>
+  <hr />
+  <div>
+    Your Posts:
+  </div>
+  <app-post [posts]="posts"></app-post>
+  <hr />
+</div>
