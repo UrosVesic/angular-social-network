@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HeaderComponent } from 'src/app/header/header.component';
 import { AuthService } from '../service/auth.service';
 import { LoginRequestPayload } from './login-request.payload';
 
@@ -49,7 +50,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginRequestPayload).subscribe((data) => {
       if (data) {
         this.router.navigateByUrl('/');
-        alert('Login successful');
       } else {
         alert('Login unsuccessful');
       }
