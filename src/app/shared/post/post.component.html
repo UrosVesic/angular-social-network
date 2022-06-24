@@ -1,14 +1,35 @@
 <!-- Display Posts-->
-<div class="row post" *ngFor="let post of posts$">
+<div class="row post" *ngFor="let post of posts">
   <!-- Section to Display Reactions-->
   <app-reaction [post]="post"></app-reaction>
   <!-- Section to Display Post Information-->
   <div class="col-md-10">
-    <span class="topic-info">
-      <span class="topic-text"><a class="posturl" routerLink="">{{post.topicName}}</a></span>
-      <span> . Posted by <a class="username" routerLink="/user/{{post.userName}}">{{post.userName}}</a></span>
-      <span> . {{post.duration}} min ago</span>
-    </span>
+    <div><span class="topic-info">
+        <span class="topic-text"><a class="posturl" routerLink="">{{post.topicName}}</a></span>
+        <span> . Posted by <a class="username" routerLink="/user/{{post.userName}}">{{post.userName}}</a></span>
+        <span> . {{post.duration}} min ago</span>
+      </span>
+      <!--<button *ngIf=isPostOwnedByLoggedUser(post.userName) class="float-right deletePost" (click)="deletePost(post.id)">
+        Delete Post
+      </button>-->
+      <div class="row float-right">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle></button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <div *ngIf=isPostOwnedByLoggedUser(post.userName)>
+                <button class="deleteItem" ngbDropdownItem>Delete</button>
+                <button ngbDropdownItem class="editItem">Edit</button>
+              </div>
+              <button *ngIf=!isPostOwnedByLoggedUser(post.userName) ngbDropdownItem class="deleteItem">Report
+                post</button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
     <hr />
     <div class="post-title">
       <a class="postname" href="/view-post/{{post.id}}">{{post.title}}</a>
