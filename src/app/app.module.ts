@@ -11,7 +11,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { HomeComponent } from './home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { PostComponent } from './shared/post/post.component';
+import { PostComponent } from './post/all-posts/post.component';
 import { ReactionComponent } from './shared/reaction/reaction.component';
 import { SideComponent } from './shared/side/side.component';
 import { TopicSideComponent } from './shared/topic-side/topic-side.component';
