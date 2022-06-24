@@ -12,7 +12,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import { HomeComponent } from './home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PostComponent } from './post/all-posts/post.component';
-import { ReactionComponent } from './shared/reaction/reaction.component';
+import { ReactionComponent } from './reaction/reaction.component';
 import { SideComponent } from './shared/side/side.component';
 import { TopicSideComponent } from './shared/topic-side/topic-side.component';
 import { CreateTopicComponent } from './topic/create-topic/create-topic.component';

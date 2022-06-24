@@ -33,4 +33,7 @@ export class ReactionComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  like() {}
+  dislike() {}
 }
