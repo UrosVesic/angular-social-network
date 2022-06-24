@@ -16,6 +16,12 @@ export class PostService {
     );
   }
 
+  getAllPostsForUser(username: string): Observable<Array<PostModel>> {
+    return this.httpClient.get<Array<PostModel>>(
+      'http://localhost:8080/api/post/user/' + username
+    );
+  }
+
   createPost(postRequest: PostRequest): Observable<PostModel> {
     return this.httpClient.post<PostModel>(
       'http://localhost:8080/api/post/create',
@@ -27,5 +33,9 @@ export class PostService {
     return this.httpClient.get<PostModel>(
       'http://localhost:8080/api/post/' + id
     );
+  }
+
+  deletePost(postId: number) {
+    return this.httpClient.delete('http://localhost:8080/api/post/' + postId);
   }
 }
