@@ -49,6 +49,26 @@
   padding: 5px;
 }
 
+.deletePost {
+  background-color: transparent;
+  border-color: #1C9E5D;
+  color: red;
+  fill: red;
+  border: 1px solid;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  line-height: 24px;
+  text-transform: uppercase;
+  padding: 3px 16px;
+  opacity: 1;
+}
+
 .btnComment {
   background-color: #1C9E5D;
   border-color: #1C9E5D;

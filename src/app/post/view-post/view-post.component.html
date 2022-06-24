@@ -7,17 +7,22 @@
           <app-reaction [post]="post"></app-reaction>
         </div>
         <div class="col-md-11">
-          <span>
-            <span class="topic-text"><a class="post-url" href="">{{post.topicName}}</a></span>
-            <span> . Posted
-              <span> {{post.duration}} </span>
-              by
-              <a *ngIf="post.userName === null" class="username" href="">Anonymous</a>
-              <a *ngIf="post.userName != null" class="username" href="">{{post.userName}}</a>
+          <div>
+            <span>
+              <span class="topic-text"><a class="post-url" href="">{{post.topicName}}</a></span>
+              <span> . Posted
+                <span> {{post.duration}} </span>
+                by
+                <a *ngIf="post.userName === null" class="username" href="">Anonymous</a>
+                <a *ngIf="post.userName != null" class="username" href="">{{post.userName}}</a>
+              </span>
             </span>
-          </span>
+            <button *ngIf=postOwnedByLoggedUser class="float-right deletePost" (click)="deletePost()">
+              Delete Post
+            </button>
+          </div>
           <hr />
-          <a class="post-title">{{post.title}}</a>
+          <a class=" post-title">{{post.title}}</a>
           <div>
             <p class="post-text" [innerHtml]="post.content"></p>
           </div>
