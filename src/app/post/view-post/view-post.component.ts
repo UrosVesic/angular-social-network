@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { AuthService } from 'src/app/auth/service/auth.service';
 import { CommentModel } from 'src/app/comment/comment-model';
 import { CommentService } from 'src/app/comment/comment.service';
 import { PostModel } from 'src/app/post/post-model';
@@ -17,11 +18,14 @@ export class ViewPostComponent implements OnInit {
   commentForm: FormGroup;
   commentModel: CommentModel;
   comments: CommentModel[] = [];
+  postOwnedByLoggedUser: boolean = false;
 
   constructor(
     private postService: PostService,
     private activateRoute: ActivatedRoute,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private authService: AuthService,
+    private router: Router
   ) {
     this.commentForm = new FormGroup({
       text: new FormControl('', Validators.required),
@@ -49,6 +53,7 @@ export class ViewPostComponent implements OnInit {
     this.postService.getPost(this.post.id).subscribe({
       next: (data) => {
         this.post = data;
+        this.postOwnedByLoggedUser = authService.getUserName() == data.userName;
       },
       error: (error) => throwError(() => error),
     });
@@ -79,6 +84,12 @@ export class ViewPostComponent implements OnInit {
     this.commentService.getAllCommentsForPost(this.post.id).subscribe({
       next: (data) => (this.comments = data),
       error: (error) => throwError(() => error),
+    });
+  }
+
+  deletePost() {
+    this.postService.deletePost(this.post.id).subscribe({
+      next: (data) => this.router.navigateByUrl('/'),
     });
   }
 }
