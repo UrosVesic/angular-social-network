@@ -2,8 +2,11 @@
   display: flex;
   text-align: center;
   flex-direction: column;
+  justify-content: center;
   font-size: 1em;
 }
+
+
 
 .reactionsection {
   margin: 0px;
