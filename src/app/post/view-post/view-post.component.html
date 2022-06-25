@@ -3,10 +3,10 @@
     <hr />
     <div class="col-md-9">
       <div class="row post">
-        <div class="col-md-1">
+        <div class="col-md-1 reaction">
           <app-reaction [post]="post"></app-reaction>
         </div>
-        <div class="col-md-11">
+        <div class="col-md-10">
           <div>
             <span>
               <span class="topic-text"><a class="post-url" href="">{{post.topicName}}</a></span>
@@ -37,7 +37,7 @@
           <div style="margin-top: 60px;" *ngFor="let comment of comments">
             <div class="comment">
               <div class="username">
-                <a routerLink="/user/comment.username">{{comment.username}}</a>
+                <a routerLink="/user-profile/{{comment.username}}">{{comment.username}}</a>
               </div>
               <div>
                 <p>{{comment.duration}}</p>

@@ -41,7 +41,8 @@ export class ViewPostComponent implements OnInit {
       topicName: '',
       commentCount: 0,
       duration: '',
-      likeCount: 0,
+      liked: false,
+      disliked: false,
     };
     this.commentModel = {
       postId: this.post.id,

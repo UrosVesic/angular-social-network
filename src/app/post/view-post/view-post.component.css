@@ -49,6 +49,10 @@
   padding: 5px;
 }
 
+.reaction {
+  margin-right: 25px;
+}
+
 .deletePost {
   background-color: transparent;
   border-color: #1C9E5D;
