@@ -38,4 +38,10 @@ export class PostService {
   deletePost(postId: number) {
     return this.httpClient.delete('http://localhost:8080/api/post/' + postId);
   }
+
+  getAllPostsForFollowingUsers(): Observable<Array<PostModel>> {
+    return this.httpClient.get<Array<PostModel>>(
+      'http://localhost:8080/api/post/authAll'
+    );
+  }
 }
