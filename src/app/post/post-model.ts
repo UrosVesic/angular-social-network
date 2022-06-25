@@ -8,5 +8,6 @@ export interface PostModel {
   topicName: string;
   commentCount: number;
   duration: string;
-  likeCount: number;
+  liked: boolean;
+  disliked: boolean;
 }
