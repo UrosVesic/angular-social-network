@@ -6,12 +6,9 @@
   <div class="col-md-10">
     <div><span class="topic-info">
         <span class="topic-text"><a class="posturl" routerLink="">{{post.topicName}}</a></span>
-        <span> . Posted by <a class="username" routerLink="/user/{{post.userName}}">{{post.userName}}</a></span>
-        <span> . {{post.duration}} min ago</span>
+        <span> . Posted by <a class="username" routerLink="/user-profile/{{post.userName}}">{{post.userName}}</a></span>
+        <span> . {{post.duration}}</span>
       </span>
-      <!--<button *ngIf=isPostOwnedByLoggedUser(post.userName) class="float-right deletePost" (click)="deletePost(post.id)">
-        Delete Post
-      </button>-->
       <div class="row float-right">
         <div class="col">
           <div ngbDropdown class="d-inline-block">
@@ -39,11 +36,11 @@
     </div>
     <hr />
     <span>
-      <a class="btnCommments" role="button">
+      <a class="btnCommments" role="button" href="/view-post/{{post.id}}">
         <fa-icon class="like" [icon]="faComments"></fa-icon>
         Comments({{post.commentCount}})
       </a>
-      <button class="readPost" (click)="goToPost(post.id)">
+      <button class=" readPost" (click)="goToPost(post.id)">
         Read Post
       </button>
     </span>
