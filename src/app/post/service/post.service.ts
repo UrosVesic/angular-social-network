@@ -29,6 +29,13 @@ export class PostService {
     );
   }
 
+  updatePost(postRequest: PostRequest, id: number): Observable<PostModel> {
+    return this.httpClient.patch<PostModel>(
+      'http://localhost:8080/api/post/update/' + id,
+      postRequest
+    );
+  }
+
   getPost(id: number): Observable<PostModel> {
     return this.httpClient.get<PostModel>(
       'http://localhost:8080/api/post/' + id

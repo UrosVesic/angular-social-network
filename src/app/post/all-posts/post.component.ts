@@ -39,10 +39,18 @@ export class PostComponent implements OnInit {
 
   deletePost(postId: number) {
     this.postService.deletePost(postId).subscribe({
-      next: (data) =>
-        this.router.navigate(['/']).then(() => {
-          window.location.reload();
-        }),
+      next: () =>
+        this.postService
+          .getAllPostsForUser(this.authService.getUserName())
+          .subscribe({
+            next: (data) => (this.posts = data),
+            error: (error) => console.log(error),
+          }),
+      error: (error) => console.log(error),
     });
+  }
+
+  goToEditPost(id: number) {
+    this.router.navigateByUrl('update-post/' + id);
   }
 }
