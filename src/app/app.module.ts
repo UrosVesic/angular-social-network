@@ -23,6 +23,9 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { ViewPostComponent } from './post/view-post/view-post.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SuggestedUsersComponent } from './shared/suggested-users/suggested-users.component';
+import { UpdatePostComponent } from './post/update-post/update-post.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,8 @@ import { UserProfileComponent } from './auth/user-profile/user-profile.component
     ListTopicsComponent,
     ViewPostComponent,
     UserProfileComponent,
+    SuggestedUsersComponent,
+    UpdatePostComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +56,7 @@ import { UserProfileComponent } from './auth/user-profile/user-profile.component
     EditorModule,
     NgbModule,
     NgbModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {
