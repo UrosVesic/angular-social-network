@@ -79,6 +79,7 @@ export class ViewPostComponent implements OnInit {
       next: (data) => this.getCommentsForPost(),
       error: (error) => throwError(() => error),
     });
+    this.commentForm.reset();
   }
 
   getCommentsForPost() {
