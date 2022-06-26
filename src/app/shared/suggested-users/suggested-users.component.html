@@ -1,0 +1,20 @@
+<div class="sidebar-suggested-users">
+  <div style="color: black; font-weight: bold">Suggested for you</div>
+  <hr />
+  <span *ngFor="let user of users">
+    <div class="container d-flex">
+      <div class="col-md-6 username"><a href="/user-profile/{{user.username}}">@{{user.username}}</a>
+        <br>
+        <a *ngIf="user.mutualFollowers>1 || user.mutualFollowers==0" class="mutual">{{user.mutualFollowers}} mutual
+          followers</a>
+        <a *ngIf="user.mutualFollowers==1" class="mutual">{{user.mutualFollowers}} mutual follower</a>
+      </div>
+      <div class="col-md-6 "><button class="btn float-right" (click)="follow(user.username)">Follow</button>
+      </div>
+    </div>
+    <hr />
+  </span>
+  <div style="text-align: center" *ngIf="displayViewAll">
+    <a style="font-weight: bold" routerLink="/list-users">View All</a>
+  </div>
+</div>
