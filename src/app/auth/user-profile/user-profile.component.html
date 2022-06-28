@@ -24,10 +24,15 @@
               <a class="number">{{postLength}}</a> posts
             </div>
             <div class="col-md-4">
-              <a class="number">{{userModel.numOfFollowers}}</a> followers
+              <a class="foll" href="all-users/followers?un={{username}}">
+                <a class="number">{{userModel.numOfFollowers}}
+                </a> followers</a>
             </div>
             <div class="col-md-4">
-              <a class="number">{{userModel.numOfFollowing}}</a> following
+
+              <a class="foll" href="all-users/following?un={{username}}"><a
+                  class="number">{{userModel.numOfFollowing}}</a>
+                following</a>
             </div>
           </div>
           <div class="container d-flex">
