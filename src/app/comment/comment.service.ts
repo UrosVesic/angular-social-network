@@ -20,4 +20,10 @@ export class CommentService {
       'http://localhost:8080/api/comment/' + postId
     );
   }
+
+  deleteComment(commentId: number) {
+    return this.httpClient.delete(
+      'http://localhost:8080/api/comment/' + commentId
+    );
+  }
 }
