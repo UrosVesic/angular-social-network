@@ -34,4 +34,16 @@ export class UserService {
       'http://localhost:8080/api/user/suggested'
     );
   }
+
+  getAllFollowersForUser(username: string): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(
+      'http://localhost:8080/api/user/followers/' + username
+    );
+  }
+
+  getAllFollowingForUser(username: string): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(
+      'http://localhost:8080/api/user/following/' + username
+    );
+  }
 }
