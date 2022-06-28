@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row" *ngFor="let user of users">
+    <!--Suggested users-->
+    <div class="col-md-6"><a class=" username" href="/user-profile/{{user.username}}">@{{user.username}}</a>
+      <br>
+      {{user.bio}}
+      <hr />
+    </div>
+    <div class="col-md-6" *ngIf="param=='suggested'"><button class="btn" (click)="follow(user.username)">Follow</button>
+    </div>
+    <!--My followers-->
+    <div class="col-md-6" *ngIf="param=='followers' && myProfile()"><button class="btn"
+        (click)="deleteFromMyFollowers(user.username)">Delete</button>
+    </div>
+    <!--My following-->
+    <div class="col-md-6" *ngIf="param=='following' && myProfile()"><button class="btn"
+        (click)="unfollow(user.username)">Unfollow</button>
+    </div>
+    <!--Someone else followers or following that i DO NOT follow-->
+    <div class="col-md-6"
+      *ngIf="(param=='following' || param=='following') && !myProfile() && !user.followedByCurrentUser && user.username!=getCurrentUser()">
+      <button class="btn" (click)="follow(user.username)">Follow</button>
+    </div>
+    <!--Someone else followers or following i follow-->
+    <div class="col-md-6"
+      *ngIf="(param=='following' || param=='following') && !myProfile() && user.followedByCurrentUser"><button
+        class="btn" (click)="unfollow(user.username)">Unfollow</button>
+    </div>
+  </div>
