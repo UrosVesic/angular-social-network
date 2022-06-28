@@ -26,6 +26,10 @@ import { UserProfileComponent } from './auth/user-profile/user-profile.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SuggestedUsersComponent } from './shared/suggested-users/suggested-users.component';
 import { UpdatePostComponent } from './post/update-post/update-post.component';
+import { AllUsersComponent } from './user/all-users/all-users.component';
+import { ReceiveMessageComponent } from './receive-message/receive-message.component';
+import { StompService } from './receive-message/stomp.service';
+import { ChangeProfileComponent } from './profile/change-profile/change-profile.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,9 @@ import { UpdatePostComponent } from './post/update-post/update-post.component';
     UserProfileComponent,
     SuggestedUsersComponent,
     UpdatePostComponent,
+    AllUsersComponent,
+    ReceiveMessageComponent,
+    ChangeProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +71,7 @@ import { UpdatePostComponent } from './post/update-post/update-post.component';
       useClass: RequestInterceptor,
       multi: true,
     },
+    StompService,
   ],
   bootstrap: [AppComponent],
 })
