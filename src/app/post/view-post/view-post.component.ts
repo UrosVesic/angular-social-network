@@ -45,6 +45,7 @@ export class ViewPostComponent implements OnInit {
       disliked: false,
     };
     this.commentModel = {
+      id: 0,
       postId: this.post.id,
       text: '',
       username: '',
@@ -92,6 +93,19 @@ export class ViewPostComponent implements OnInit {
   deletePost() {
     this.postService.deletePost(this.post.id).subscribe({
       next: (data) => this.router.navigateByUrl('/'),
+    });
+  }
+
+  isCommentOwnedByLoggedUser(username: string) {
+    return username == this.authService.getUserName();
+  }
+
+  deleteComment(commentId: number) {
+    this.commentService.deleteComment(commentId).subscribe({
+      next: () =>
+        this.commentService.getAllCommentsForPost(this.post.id).subscribe({
+          next: (data) => (this.comments = data),
+        }),
     });
   }
 }

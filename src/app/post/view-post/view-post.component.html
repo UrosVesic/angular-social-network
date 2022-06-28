@@ -38,6 +38,19 @@
             <div class="comment">
               <div class="username">
                 <a routerLink="/user-profile/{{comment.username}}">{{comment.username}}</a>
+                <div ngbDropdown class="d-inline-block float-right">
+                  <button type="button" class="arrow btn-outline-primary" id="dropdownBasic1"
+                    ngbDropdownToggle></button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <div *ngIf=isCommentOwnedByLoggedUser(comment.username)>
+                      <button class="deleteItem" ngbDropdownItem (click)="deleteComment(comment.id)">Delete</button>
+                      <!--<button ngbDropdownItem class="editItem" (click)="goToEditPost(post.id)">Edit</button>-->
+                    </div>
+                    <button *ngIf=!isCommentOwnedByLoggedUser(comment.username) ngbDropdownItem
+                      class="deleteItem">Report
+                      comment</button>
+                  </div>
+                </div>
               </div>
               <div>
                 <p>{{comment.duration}}</p>
