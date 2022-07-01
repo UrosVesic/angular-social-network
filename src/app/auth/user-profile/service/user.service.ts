@@ -46,4 +46,8 @@ export class UserService {
       'http://localhost:8080/api/user/following/' + username
     );
   }
+
+  updateUser(user: UserModel) {
+    return this.http.patch('http://localhost:8080/api/user/', user);
+  }
 }
