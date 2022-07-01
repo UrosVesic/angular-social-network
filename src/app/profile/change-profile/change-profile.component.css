@@ -1,0 +1,59 @@
+/*.username {
+  margin-left: 60px;
+  font-size: x-large;
+}
+
+.name {
+  margin-right: 10px;
+  font-size: x-large;
+}
+
+.account-icon {
+  margin-right: 20px;
+
+
+}
+
+.container {
+  border: solid 1px;
+  border-color: rgb(187, 187, 187);
+}*/
+
+.login-section {
+  margin: 100px;
+}
+
+.login-failed {
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
+  border: 2px solid black;
+  width: 65%;
+  background-color: red;
+}
+
+.login-failed-text {
+  text-align: center;
+  margin-top: 5px;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+.login {
+  background-color: #1C9E5D;
+  border-color: #1C9E5D;
+  color: aliceblue;
+  fill: #1C9E5D;
+  border: 1px solid;
+  border-radius: 4px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  line-height: 24px;
+  text-transform: uppercase;
+  padding: 3px 16px;
+  opacity: 1;
+}
