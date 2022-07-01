@@ -41,3 +41,12 @@ testem.log
 .DS_Store
 Thumbs.db
 src/app/shared/side/photo.png
+src/app/auth/user-profile/user-profile.component.html
+src/app/receive-message/stomp.service.ts
+src/app/receive-message/stomp.service.spec.ts
+src/app/receive-message/receive-message.component.ts
+src/app/receive-message/receive-message.component.spec.ts
+src/app/receive-message/receive-message.component.html
+src/app/receive-message/receive-message.component.css
+src/app/receive-message/message-payload.ts
+src/typings.d.ts
