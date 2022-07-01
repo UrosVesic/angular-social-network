@@ -54,6 +54,7 @@ export class AuthService {
 
   logout() {
     this.localStorage.clear();
+    this.loggedIn.emit(false);
   }
 
   getUserName(): string {
