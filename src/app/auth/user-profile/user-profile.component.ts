@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { throwError } from 'rxjs';
 import { PostModel } from 'src/app/post/post-model';
@@ -23,7 +23,8 @@ export class UserProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private postService: PostService,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.userModel = {
       created: '',
@@ -78,5 +79,9 @@ export class UserProfileComponent implements OnInit {
     this.userService.getProfileInfo(this.username).subscribe((data) => {
       this.userModel = data;
     });
+  }
+
+  goToChangeProfile() {
+    this.router.navigateByUrl('change-profile/' + this.username);
   }
 }
