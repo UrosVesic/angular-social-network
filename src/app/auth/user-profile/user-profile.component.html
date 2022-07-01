@@ -1,0 +1,68 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-9">
+      <div class="container d-flex user-header">
+        <div class="col-md-3 ">
+          <fa-icon class="account-icon fa-thin fa-3x " [icon]="faUser"></fa-icon>
+        </div>
+        <div class="col-md-7 colls">
+          <div class="container d-flex">
+            <div class="col-md-6 username">
+              @{{username}}
+            </div>
+            <div class="col-md-6 " *ngIf="!yourProfile()">
+              <button *ngIf="!following()" class="btn float-right" (click)="follow()">Follow</button>
+              <button *ngIf="following()" class="btn float-right" (click)="unfollow()">Unfollow</button>
+            </div>
+            <div class="col-md-6 " *ngIf="yourProfile()">
+              <button class="btn float-right" (click)="goToChangeProfile()">Change</button>
+            </div>
+          </div>
+          <div class="container d-flex">
+            <div class="col-md-4">
+              <a class="number">{{postLength}}</a> posts
+            </div>
+            <div class="col-md-4">
+              <a class="foll" href="all-users/followers?un={{username}}">
+                <a class="number">{{userModel.numOfFollowers}}
+                </a> followers</a>
+            </div>
+            <div class="col-md-4">
+
+              <a class="foll" href="all-users/following?un={{username}}"><a
+                  class="number">{{userModel.numOfFollowing}}</a>
+                following</a>
+            </div>
+          </div>
+          <div class="container d-flex">
+            <div class="col-md-8">{{userModel.bio}}</div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+      <div *ngIf="yourProfile()">
+        Welcome <b>{{username}}</b>.<br /> You have posted <b>{{postLength}}</b> time(s).
+        You can check your post history below.
+        <hr />
+      </div>
+
+      <div *ngIf="yourProfile()">
+        Your Posts:
+      </div>
+      <div *ngIf="!yourProfile()">
+        Welcome to {{username}}'s profile. Check his posts!
+      </div>
+      <app-post [posts]="posts"></app-post>
+      <hr />
+    </div>
+    <div class="col-md-3">
+      <app-side></app-side>
+      <app-suggested-users></app-suggested-users>
+      <app-topic-side></app-topic-side>
+    </div>
+  </div>
+</div>
