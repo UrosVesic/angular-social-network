@@ -1,98 +1,97 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { AuthService } from 'src/app/auth/service/auth.service';
-import { TopicModel } from 'src/app/topic/topic-model';
-import { TopicService } from 'src/app/topic/topic.service';
-import { PostRequest } from '../create-post/post-request';
-import { PostModel } from '../post-model';
-import { PostService } from '../service/post.service';
+import { CommentModel } from 'src/app/comment/comment-model';
+import { CommentService } from 'src/app/comment/comment.service';
+import { PostModel } from 'src/app/post/post-model';
+import { PostService } from 'src/app/post/service/post.service';
 
 @Component({
-  selector: 'app-update-post',
-  templateUrl: './update-post.component.html',
-  styleUrls: ['./update-post.component.css'],
+  selector: 'app-view-post',
+  templateUrl: './view-post.component.html',
+  styleUrls: ['./view-post.component.css'],
 })
-export class UpdatePostComponent implements OnInit {
-  createPostForm: FormGroup;
-  topics: Array<TopicModel> = [];
-  @Input() postRequest: PostRequest;
-  postModel: PostModel;
-  id: number = 0;
+export class ViewPostComponent implements OnInit {
+  post: PostModel;
+  commentForm: FormGroup;
+  commentModel: CommentModel;
+  comments: CommentModel[] = [];
+  postOwnedByLoggedUser: boolean = false;
+
   constructor(
-    private router: Router,
-    private topicService: TopicService,
     private postService: PostService,
-    private actRoute: ActivatedRoute,
-    private authService: AuthService
+    private activateRoute: ActivatedRoute,
+    private commentService: CommentService,
+    private authService: AuthService,
+    private router: Router
   ) {
-    this.postModel = {
-      commentCount: 0,
-      content: '',
-      disliked: false,
-      dislikes: 0,
-      duration: '',
+    this.commentForm = new FormGroup({
+      text: new FormControl('', Validators.required),
+    });
+
+    this.post = {
       id: 0,
-      liked: false,
-      likes: 0,
-      title: '',
-      topicName: '',
-      userName: '',
-    };
-    this.postRequest = {
       title: '',
       content: '',
+      likes: 0,
+      dislikes: 0,
+      userName: '',
       topicName: '',
+      commentCount: 0,
+      duration: '',
+      liked: false,
+      disliked: false,
+      usernameDislikes: [],
+      usernameLikes: [],
     };
-    this.createPostForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      topicName: new FormControl(''),
-      content: new FormControl(''),
+    this.commentModel = {
+      id: 0,
+      postId: this.post.id,
+      text: '',
+      username: '',
+      duration: '',
+    };
+    this.post.id = this.activateRoute.snapshot.params['id'];
+    this.postService.getPost(this.post.id).subscribe({
+      next: (data) => {
+        this.post = data;
+        this.postOwnedByLoggedUser = authService.getUserName() == data.userName;
+      },
+      error: (error) => throwError(() => error),
     });
   }
 
   ngOnInit(): void {
-    this.actRoute.params.subscribe((routeParams) => {
-      this.id = routeParams['id'];
-    });
-    console.log(this.id);
-    this.topicService.getAllTopics().subscribe({
-      next: (data) => {
-        this.topics = data;
-      },
+    this.getPostById();
+    this.getCommentsForPost();
+  }
+
+  getPostById() {
+    this.postService.getPost(this.post.id).subscribe({
+      next: (data) => (this.post = data),
       error: (error) => throwError(() => error),
     });
-    this.postService.getPost(this.id).subscribe({
-      next: (data) =>
-        this.createPostForm.patchValue({
-          title: data.title,
-          topicName: data.topicName,
-          content: data.content,
-        }),
-      error: (error) => console.log(error),
-    });
-    console.log(this.postModel);
   }
-  discardPost() {
-    this.router.navigateByUrl('/');
-  }
-  updatePost() {
-    this.postRequest.title = this.createPostForm.get('title')!.value;
-    this.postRequest.content = this.createPostForm.get('content')!.value;
-    this.postRequest.topicName = this.createPostForm.get('topicName')!.value;
 
-    this.postService.updatePost(this.postRequest, this.id).subscribe({
-      next: (data) => {
-        this.router.navigateByUrl(
-          '/user-profile/' + this.authService.getUserName()
-        );
-        console.log(data);
-      },
-      error: (error) => {
-        throwError(() => error);
-        console.log(error);
-      },
+  postComment() {
+    this.commentModel.text = this.commentForm.get('text')!.value;
+    this.commentModel.postId = this.post.id;
+    this.commentService.postComment(this.commentModel).subscribe({
+      next: (data) => this.getCommentsForPost(),
+      error: (error) => throwError(() => error),
+    });
+    this.commentForm.reset();
+  }
+
+  getCommentsForPost() {
+    this.commentService.getAllCommentsForPost(this.post.id).subscribe({
+      next: (data) => (this.comments = data),
+      error: (error) => throwError(() => error),
     });
   }
-}
+
+  deletePost() {
+    this.postService.deletePost(this.post.id).subscribe({
+      next: (data) => this.router.navigateByUrl('/
