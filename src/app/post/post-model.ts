@@ -10,4 +10,6 @@ export interface PostModel {
   duration: string;
   liked: boolean;
   disliked: boolean;
+  usernameLikes: string[];
+  usernameDislikes: string[];
 }
