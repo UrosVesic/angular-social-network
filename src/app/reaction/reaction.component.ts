@@ -39,6 +39,8 @@ export class ReactionComponent implements OnInit {
       userName: '',
       liked: false,
       disliked: false,
+      usernameDislikes: [],
+      usernameLikes: [],
     };
     this.reactionModel = {
       postId: 0,
@@ -46,9 +48,7 @@ export class ReactionComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {
-    this.updateReactDetails();
-  }
+  ngOnInit(): void {}
 
   like() {
     this.reactionModel.reactionType = ReactionType.LIKE;
@@ -72,5 +72,18 @@ export class ReactionComponent implements OnInit {
     this.postService.getPost(this.post.id).subscribe((post) => {
       this.post = post;
     });
+  }
+  arrayToString(array: string[]): string {
+    let str = '';
+    let i = 0;
+    for (let i = 0; i < array.length; i++) {
+      if (i > 20) {
+        str = str.concat('and more...');
+        break;
+      }
+      const element = array[i];
+      str = str.concat(element + '\n');
+    }
+    return str;
   }
 }
