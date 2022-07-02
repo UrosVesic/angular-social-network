@@ -9,11 +9,11 @@ import { PostModel } from 'src/app/post/post-model';
 import { PostService } from 'src/app/post/service/post.service';
 
 @Component({
-  selector: 'app-view-post',
-  templateUrl: './view-post.component.html',
-  styleUrls: ['./view-post.component.css'],
+  selector: 'app-update-post',
+  templateUrl: './update-post.component.html',
+  styleUrls: ['./update-post.component.css'],
 })
-export class ViewPostComponent implements OnInit {
+export class UpdatePostComponent implements OnInit {
   post: PostModel;
   commentForm: FormGroup;
   commentModel: CommentModel;
@@ -94,4 +94,7 @@ export class ViewPostComponent implements OnInit {
 
   deletePost() {
     this.postService.deletePost(this.post.id).subscribe({
-      next: (data) => this.router.navigateByUrl('/
+      next: (data) => this.router.navigateByUrl('/'),
+    });
+  }
+}

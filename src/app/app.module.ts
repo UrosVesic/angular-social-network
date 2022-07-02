@@ -27,8 +27,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SuggestedUsersComponent } from './shared/suggested-users/suggested-users.component';
 import { UpdatePostComponent } from './post/update-post/update-post.component';
 import { AllUsersComponent } from './user/all-users/all-users.component';
-import { ReceiveMessageComponent } from './receive-message/receive-message.component';
-import { StompService } from './receive-message/stomp.service';
 import { ChangeProfileComponent } from './profile/change-profile/change-profile.component';
 import { PanelComponent } from './admin/panel/panel.component';
 
@@ -51,7 +49,6 @@ import { PanelComponent } from './admin/panel/panel.component';
     SuggestedUsersComponent,
     UpdatePostComponent,
     AllUsersComponent,
-    ReceiveMessageComponent,
     ChangeProfileComponent,
     PanelComponent,
   ],
@@ -73,7 +70,6 @@ import { PanelComponent } from './admin/panel/panel.component';
       useClass: RequestInterceptor,
       multi: true,
     },
-    StompService,
   ],
   bootstrap: [AppComponent],
 })
