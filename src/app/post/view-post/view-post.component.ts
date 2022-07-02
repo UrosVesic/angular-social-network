@@ -43,6 +43,8 @@ export class ViewPostComponent implements OnInit {
       duration: '',
       liked: false,
       disliked: false,
+      usernameDislikes: [],
+      usernameLikes: [],
     };
     this.commentModel = {
       id: 0,
@@ -62,7 +64,6 @@ export class ViewPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPostById();
     this.getCommentsForPost();
   }
 
