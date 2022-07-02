@@ -30,6 +30,7 @@ import { AllUsersComponent } from './user/all-users/all-users.component';
 import { ReceiveMessageComponent } from './receive-message/receive-message.component';
 import { StompService } from './receive-message/stomp.service';
 import { ChangeProfileComponent } from './profile/change-profile/change-profile.component';
+import { PanelComponent } from './admin/panel/panel.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ChangeProfileComponent } from './profile/change-profile/change-profile.
     AllUsersComponent,
     ReceiveMessageComponent,
     ChangeProfileComponent,
+    PanelComponent,
   ],
   imports: [
     BrowserModule,
