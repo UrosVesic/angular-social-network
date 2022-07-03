@@ -38,6 +38,7 @@ export class AuthService {
             data.authenticationToken
           );
           this.localStorage.store('username', data.username);
+          this.localStorage.store('isAdmin', data.isAdmin);
           this.loggedIn.emit(true);
           this.username.emit(loginRequestPayload.username);
           return true;
@@ -55,6 +56,10 @@ export class AuthService {
   logout() {
     this.localStorage.clear();
     this.loggedIn.emit(false);
+  }
+
+  isAdmin(): boolean {
+    return this.localStorage.retrieve('isAdmin') == 'yes';
   }
 
   getUserName(): string {
