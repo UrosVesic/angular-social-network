@@ -29,6 +29,8 @@ import { UpdatePostComponent } from './post/update-post/update-post.component';
 import { AllUsersComponent } from './user/all-users/all-users.component';
 import { ChangeProfileComponent } from './profile/change-profile/change-profile.component';
 import { PanelComponent } from './admin/panel/panel.component';
+import { ReportedPostComponent } from './report/unsolved-reported-posts/reported-post.component';
+import { SolvedReportedPostComponent } from './report/solved-reported-post/solved-reported-post.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { PanelComponent } from './admin/panel/panel.component';
     AllUsersComponent,
     ChangeProfileComponent,
     PanelComponent,
+    ReportedPostComponent,
+    SolvedReportedPostComponent,
   ],
   imports: [
     BrowserModule,
