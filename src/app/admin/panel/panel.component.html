@@ -1,1 +1,18 @@
-<p>panel works!</p>
+<div class="container">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Unsolved reports</a>
+      <ng-template ngbNavContent>
+        <app-reported-post></app-reported-post>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Solved reports</a>
+      <ng-template ngbNavContent>
+        <app-solved-reported-post></app-solved-reported-post>
+      </ng-template>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+</div>
