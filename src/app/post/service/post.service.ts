@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PostRequest } from '../create-post/post-request';
 import { PostModel } from '../post-model';
+import { ReportedPostModel } from '../reported-post-model';
 
 @Injectable({
   providedIn: 'root',
@@ -49,6 +50,25 @@ export class PostService {
   getAllPostsForFollowingUsers(): Observable<Array<PostModel>> {
     return this.httpClient.get<Array<PostModel>>(
       'http://localhost:8080/api/post/authAll'
+    );
+  }
+
+  getAllReportedPosts(): Observable<Array<ReportedPostModel>> {
+    return this.httpClient.get<Array<ReportedPostModel>>(
+      'http://localhost:8080/api/post/secured/reported'
+    );
+  }
+
+  getAllSolvedReportedPosts(): Observable<Array<ReportedPostModel>> {
+    return this.httpClient.get<Array<ReportedPostModel>>(
+      'http://localhost:8080/api/post/secured/reported-solved'
+    );
+  }
+
+  softDeletePost(id: number): Observable<any> {
+    return this.httpClient.patch(
+      'http://localhost:8080/api/post/soft-delete/' + id,
+      ''
     );
   }
 }
