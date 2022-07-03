@@ -4,7 +4,7 @@
       <fa-icon class="like fa-lg" [icon]="faThumbsUp" [style.color]="post.liked ? 'green':''" (click)="like()">
       </fa-icon>
     </div>
-    <div class="p-2 reactioncount"><a href="/" ngbPopover={{arrayToString(post.usernameLikes)}}
+    <div class="p-2 reactioncount"><a class="reactions" ngbPopover={{arrayToString(post.usernameLikes)}}
         triggers="mouseenter:mouseleave">{{post.likes}}</a></div>
   </div>
   <div class="d-flex flex-row ">
@@ -12,7 +12,7 @@
       <fa-icon class="dislike fa-lg" [icon]="faThumbsDown" [style.color]="post.disliked ? 'red':''" (click)="dislike()">
       </fa-icon>
     </div>
-    <div class="p-2 reactioncount"><a href="/" ngbPopover={{arrayToString(post.usernameDislikes)}}
+    <div class="p-2 reactioncount"><a class="reactions" ngbPopover={{arrayToString(post.usernameDislikes)}}
         triggers="mouseenter:mouseleave">{{post.dislikes}}</a></div>
   </div>
 </div>
