@@ -37,4 +37,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/login');
     this.isLoggedIn = false;
   }
+
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
+  goToAdminPage() {
+    this.router.navigateByUrl('admin');
+  }
 }
