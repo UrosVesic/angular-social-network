@@ -1,4 +1,4 @@
-.login-section {
+/*.login-section {
   margin: 100px;
 }
 
@@ -35,4 +35,434 @@
   text-transform: uppercase;
   padding: 3px 16px;
   opacity: 1;
+}*/
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+:root {
+  /*========== Colors ==========*/
+  /* Change favorite color */
+  --hue-color: 142;
+  /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
+
+  /* HSL color mode */
+  --first-color: hsl(var(--hue-color), 69%, 61%);
+  --first-color-second: hsl(var(--hue-color), 69%, 61%);
+  --first-color-alt: hsl(var(--hue-color), 57%, 53%);
+  --first-color-lighter: hsl(var(--hue-color), 92%, 85%);
+  --title-color: hsl(var(--hue-color), 9%, 15%);
+  --text-color: hsl(var(--hue-color), 8%, 45%);
+  --text-color-light: hsl(var(--hue-color), 8%, 65%);
+  --input-color: hsl(var(--hue-color), 70%, 96%);
+  --body-color: hsl(var(--hue-color), 60%, 99%);
+  --container-color: hsl(var(--hue-color), 100%, 94%);
+  --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
+  --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
+  --ikonice-boja: var(--text-color);
+  --boja-teksta-labele: --text-color;
+
+  --zutaBoja: #ffffff;
+
+  --main-color: #1c9e5d;
+
+  /*========== Font and typography ==========*/
+  --body-font: "Poppins", sans-serif;
+
+  /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
+  --big-font-size: 2rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1.125rem;
+  --normal-font-size: 0.938rem;
+  --small-font-size: 0.813rem;
+  --smaller-font-size: 0.75rem;
+
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== Margenes Bottom ==========*/
+  /* .25rem = 4px, .5rem = 8px, .75rem = 12px ... */
+  --mb-0-25: 0.25rem;
+  --mb-0-5: 0.5rem;
+  --mb-0-75: 0.75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  --mb-3: 3rem;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
+
+body {
+  margin: 0 0 var(--header-height) 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+  height: 100%;
+  margin-top: 0;
+}
+
+h2,
+h3,
+h4 {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+#wrapper {
+  border: 1px solid black;
+  overflow: hidden;
+  /* add this to contain floated children */
+  height: 100%;
+}
+
+#first {
+  width: 65%;
+  float: left;
+  /* add this */
+  margin-right: 5%;
+  background-color: #1c9e5d;
+  height: 100vh;
+}
+
+#second {
+  overflow: hidden;
+  /* if you don't want #second to wrap below #first */
+  margin-right: 5%;
+  align-items: center;
+}
+
+div.container4 {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-text {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.title-text {
+  margin-bottom: 12vh;
+  color: #1c9e5d;
+  font-size: 65px;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.form {
+  font-size: 22px;
+  font-family: monospace;
+  color: rgb(83, 83, 83);
+  font-weight: bolder;
+  width: 70%;
+  position: relative;
+  height: 70px;
+  overflow: hidden;
+}
+
+.form input {
+  width: 100%;
+  height: 100%;
+  font-size: 21px;
+  font-family: monospace;
+  color: rgb(83, 83, 83);
+  font-weight: bolder;
+  padding-top: 40px;
+  border: none;
+  background-color: var(--body-color);
+  outline: none;
+}
+
+.form label {
+  position: absolute;
+  bottom: 0px;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid rgb(83, 83, 83);
+}
+
+.form label::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  bottom: -1px;
+  border-bottom: 3px solid #1c9e5d;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  margin-top: 40px;
+
+}
+
+.content-name {
+  position: absolute;
+  left: 0px;
+  bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+.form input:focus+.label-name .content-name,
+.form input:valid+.label-name .content-name {
+  transform: translateY(-150%);
+  font-size: 18px;
+  color: #1c9e5d;
+  margin-top: 40px;
+
+}
+
+.form input:focus+.label-name::after,
+.form input:valid+.label-name::after {
+  transform: translateX(0%);
+  margin-top: 20px;
+}
+
+#password {
+  padding-top: 20px;
+}
+
+.dugme {
+  padding-top: 35px;
+}
+
+a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 30px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: rgb(83, 83, 83);
+  background: var(--container-color);
+  letter-spacing: 2px;
+  font-size: 18px;
+}
+
+a:hover {
+  background: #1c9e5d;
+  color: white;
+  transition: 0.5s;
+  transition-delay: 1s;
+}
+
+a span {
+  position: absolute;
+  display: block;
+  background: #1c9e5d;
+}
+
+a span:nth-child(1) {
+  left: 0;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.25s;
+}
+
+a:hover span:nth-child(1) {
+  transform: scaleY(1);
+  transform-origin: bottom;
+  transition: transform 0.25s;
+}
+
+a span:nth-child(2) {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s;
+  transition-delay: 0.25s;
+}
+
+a:hover span:nth-child(2) {
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.25s;
+  transition-delay: 0.25s;
+}
+
+a span:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.25s;
+  transition-delay: 0.5s;
+}
+
+a:hover span:nth-child(3) {
+  transform: scaleY(1);
+  transform-origin: top;
+  transition: transform 0.25s;
+  transition-delay: 0.5s;
+}
+
+a span:nth-child(4) {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s;
+  transition-delay: 0.75s;
+}
+
+a:hover span:nth-child(4) {
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform 0.25s;
+  transition-delay: 0.75s;
+}
+
+#register {
+  margin-top: 60px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: var(--container-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+.dugmeRegister {
+  padding-top: 10px;
+}
+
+.dugmeRegister a {
+  font-size: 12px;
+  background-color: var(--body-color);
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.dugmeRegister a:hover {
+  background: #1c9e5d;
+  color: white;
+  transition: 0.5s;
+  transition-delay: 1s;
+}
+
+section {
+  background-color: #1c9e5d;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+section .row {
+  position: relative;
+  top: -50%;
+  /* left: -20%; */
+  width: 100%;
+  display: flex;
+  padding: 10px 0;
+  white-space: nowrap;
+  font-size: 64px;
+  transform: rotate(-30deg);
+}
+
+i {
+  color: #1cae65;
+  transition: 1s;
+  padding: 0 5px;
+  user-select: none;
+  cursor: default;
+}
+
+i:hover {
+  transition: 0s;
+  color: var(--body-color);
+  /* box-shadow: 0 0 120px #0f0; */
+  text-shadow: 0 0 120px #1c9e5d;
+}
+
+section .row div {
+  animation: animate1 80s linear infinite;
+  animation-delay: -40s;
+}
+
+section .row div:nth-child(2) {
+  animation: animate2 80s linear infinite;
+  animation-delay: -40s;
+}
+
+@keyframes animate1 {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+section .row:nth-child(even) div {
+  animation: animate3 80s linear infinite;
+  animation-delay: -80s;
+}
+
+section .row:nth-child(even) div:nth-child(2) {
+  animation: animate4 80s linear infinite;
+  animation-delay: -40s;
+}
+
+@keyframes animate3 {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes animate4 {
+  0% {
+    transform: translateX(-200%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
 }
