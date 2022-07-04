@@ -6,6 +6,7 @@ import {
   faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/auth/service/auth.service';
+import { Modals } from 'src/app/modals';
 import { ReportedPostModel } from 'src/app/post/reported-post-model';
 import { PostService } from 'src/app/post/service/post.service';
 import { ReportStatus } from '../report-status';
@@ -26,7 +27,8 @@ export class SolvedReportedPostComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private postService: PostService,
-    private reportService: ReportService
+    private reportService: ReportService,
+    private modals: Modals
   ) {
     this.postService.getAllSolvedReportedPosts().subscribe({
       next: (data) => ((this.posts = data), console.log(this.posts)),
@@ -46,18 +48,22 @@ export class SolvedReportedPostComponent implements OnInit {
   softDeletePost(postId: number) {
     this.postService.softDeletePost(postId).subscribe({
       next: () =>
-        this.postService.getAllReportedPosts().subscribe({
+        this.postService.getAllSolvedReportedPosts().subscribe({
           next: (data) => (this.posts = data),
           error: (error) => console.log(error),
         }),
-      error: (error) => console.log(error),
+      error: (error) => this.modals.errorNotification(error.error),
     });
-    //this.reportService.changeReportStatus
-    //ovde moze da se implementira nova metoda za brisanje post zajedno sa promenom statusa reporta
   }
 
   aprovePost(id: number) {
-    //this.reportService.changeReportStatus();
+    this.reportService.changeReportStatus(id, ReportStatus.APPROVED).subscribe({
+      next: (data) =>
+        this.postService.getAllSolvedReportedPosts().subscribe({
+          next: (data) => (this.posts = data),
+        }),
+      error: (error) => this.modals.errorNotification(error.error),
+    });
   }
 
   isApproved(reportStatus: ReportStatus) {
