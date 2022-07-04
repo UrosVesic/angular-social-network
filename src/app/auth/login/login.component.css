@@ -98,7 +98,26 @@
   --z-modal: 1000;
 }
 
-body {
+.login {
+  background-color: #1C9E5D;
+  border-color: #1C9E5D;
+  color: aliceblue;
+  fill: #1C9E5D;
+  border: 1px solid;
+  border-radius: 4px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  line-height: 24px;
+  text-transform: uppercase;
+  padding: 3px 16px;
+  opacity: 1;
+}
+
+*/ body {
   margin: 0 0 var(--header-height) 0;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
@@ -179,7 +198,7 @@ div.container4 {
   font-family: monospace;
   color: rgb(83, 83, 83);
   font-weight: bolder;
-  padding-top: 40px;
+  padding-top: 25px;
   border: none;
   background-color: var(--body-color);
   outline: none;
@@ -232,7 +251,7 @@ div.container4 {
 }
 
 #password {
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .dugme {
