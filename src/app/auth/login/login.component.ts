@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginRequestPayload: LoginRequestPayload;
   registerSuccessMessage: string;
   isError: boolean;
-
+  //proba
   constructor(
     private authService: AuthService,
     private router: Router,
