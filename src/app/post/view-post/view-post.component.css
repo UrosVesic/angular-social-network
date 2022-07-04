@@ -53,6 +53,11 @@
   margin-right: 25px;
 }
 
+.btn {
+  color: #1C9E5D;
+  border: #1C9E5D;
+}
+
 .deletePost {
   background-color: transparent;
   border-color: #1C9E5D;

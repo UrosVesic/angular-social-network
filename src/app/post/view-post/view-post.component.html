@@ -17,9 +17,24 @@
                 <a *ngIf="post.userName != null" class="username" href="">{{post.userName}}</a>
               </span>
             </span>
-            <button *ngIf=postOwnedByLoggedUser class="float-right deletePost" (click)="deletePost()">
-              Delete Post
-            </button>
+            <div class="row float-right">
+              <div class="col">
+                <div ngbDropdown class="d-inline-block">
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle></button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <div *ngIf=postOwnedByLoggedUser>
+                      <button class="deleteItem" ngbDropdownItem (click)="deletePost()">Delete</button>
+                      <button ngbDropdownItem class="editItem" (click)="goToEditPost()">Edit</button>
+                    </div>
+                    <button *ngIf=!postOwnedByLoggedUser ngbDropdownItem class="deleteItem"
+                      (click)="reportPost()">Report
+                      post</button>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
           </div>
           <hr />
           <a class=" post-title">{{post.title}}</a>
