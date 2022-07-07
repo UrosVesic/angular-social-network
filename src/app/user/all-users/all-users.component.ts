@@ -13,6 +13,7 @@ export class AllUsersComponent implements OnInit {
   users: UserModel[] = [];
   param: string = '';
   username: string = '';
+  searchText: string = '';
 
   constructor(
     private userService: UserService,
@@ -50,6 +51,11 @@ export class AllUsersComponent implements OnInit {
         });
       }
     });
+  }
+
+  onSearchTextEntered(searchValue: string) {
+    this.searchText = searchValue;
+    console.log(searchValue);
   }
 
   follow(username: string) {
@@ -106,5 +112,12 @@ export class AllUsersComponent implements OnInit {
 
   getCurrentUser(): string {
     return this.authService.getUserName();
+  }
+
+  searchMatch(user: UserModel) {
+    if (this.searchText == '') {
+      return true;
+    }
+    return user.username.includes(this.searchText);
   }
 }
