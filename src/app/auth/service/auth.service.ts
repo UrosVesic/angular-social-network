@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../login/login-request.payload';
 import { LoginResponse } from '../login/login-response.payload';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ import { LoginResponse } from '../login/login-response.payload';
 export class AuthService {
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
   @Output() username: EventEmitter<string> = new EventEmitter();
+  baseUrl = environment.baseUrl;
   constructor(
     private httpClient: HttpClient,
     private localStorage: LocalStorageService
@@ -19,7 +21,7 @@ export class AuthService {
 
   signup(signupRequestPayload: SignupRequestPaylaod): Observable<any> {
     return this.httpClient.post(
-      'http://localhost:8080/api/auth/signup',
+      this.baseUrl + 'api/auth/signup',
       signupRequestPayload,
       { responseType: 'text' }
     );
@@ -27,10 +29,7 @@ export class AuthService {
 
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
     return this.httpClient
-      .post<LoginResponse>(
-        'http://localhost:8080/api/auth/login',
-        loginRequestPayload
-      )
+      .post<LoginResponse>(this.baseUrl + 'api/auth/login', loginRequestPayload)
       .pipe(
         map((data) => {
           this.localStorage.store(

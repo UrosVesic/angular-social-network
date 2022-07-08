@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ReportPayload } from './report-payload';
 import { ReportStatus } from './report-status';
 
@@ -8,11 +9,12 @@ import { ReportStatus } from './report-status';
   providedIn: 'root',
 })
 export class ReportService {
+  baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) {}
 
   reportPost(repoprtPayload: ReportPayload): Observable<any> {
     return this.http.post<ReportPayload>(
-      'http://localhost:8080/api/report',
+      this.baseUrl + 'api/report',
       repoprtPayload
     );
   }
@@ -22,7 +24,7 @@ export class ReportService {
     reportStatus: ReportStatus
   ): Observable<any> {
     return this.http.patch<ReportPayload>(
-      'http://localhost:8080/api/report/change-status/' + postId,
+      this.baseUrl + 'api/report/change-status/' + postId,
       reportStatus
     );
   }

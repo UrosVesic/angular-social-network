@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { PostRequest } from '../create-post/post-request';
 import { PostModel } from '../post-model';
 import { ReportedPostModel } from '../reported-post-model';
@@ -9,65 +10,62 @@ import { ReportedPostModel } from '../reported-post-model';
   providedIn: 'root',
 })
 export class PostService {
+  baseUrl = environment.baseUrl;
   constructor(private httpClient: HttpClient) {}
 
   getAllPosts(): Observable<Array<PostModel>> {
-    return this.httpClient.get<Array<PostModel>>(
-      'http://localhost:8080/api/post/all'
-    );
+    return this.httpClient.get<Array<PostModel>>(this.baseUrl + 'api/post/all');
   }
 
   getAllPostsForUser(username: string): Observable<Array<PostModel>> {
     return this.httpClient.get<Array<PostModel>>(
-      'http://localhost:8080/api/post/user/' + username
+      this.baseUrl + 'api/post/user/' + username
     );
   }
 
   createPost(postRequest: PostRequest): Observable<PostModel> {
     return this.httpClient.post<PostModel>(
-      'http://localhost:8080/api/post/create',
+      this.baseUrl + 'api/post/create',
       postRequest
     );
   }
 
   updatePost(postRequest: PostRequest, id: number): Observable<PostModel> {
     return this.httpClient.patch<PostModel>(
-      'http://localhost:8080/api/post/update/' + id,
+      this.baseUrl + 'api/post/update/' + id,
       postRequest
     );
   }
 
   getPost(id: number): Observable<PostModel> {
-    return this.httpClient.get<PostModel>(
-      'http://localhost:8080/api/post/' + id
-    );
+    return this.httpClient.get<PostModel>(this.baseUrl + 'api/post/' + id);
   }
 
   deletePost(postId: number) {
-    return this.httpClient.delete('http://localhost:8080/api/post/' + postId);
+    return this.httpClient.delete(this.baseUrl + 'api/post/' + postId);
   }
 
   getAllPostsForFollowingUsers(): Observable<Array<PostModel>> {
     return this.httpClient.get<Array<PostModel>>(
-      'http://localhost:8080/api/post/authAll'
+      this.baseUrl + 'api/post/authAll'
     );
   }
 
   getAllReportedPosts(): Observable<Array<ReportedPostModel>> {
     return this.httpClient.get<Array<ReportedPostModel>>(
-      'http://localhost:8080/api/post/secured/reported'
+      this.baseUrl + 'api/post/secured/reported'
     );
   }
 
   getAllSolvedReportedPosts(): Observable<Array<ReportedPostModel>> {
     return this.httpClient.get<Array<ReportedPostModel>>(
-      'http://localhost:8080/api/post/secured/reported-solved'
+      this.baseUrl + 'api/post/secured/reported-solved'
     );
   }
 
   softDeletePost(id: number): Observable<any> {
     return this.httpClient.patch(
-      'http://localhost:8080/api/post/soft-delete/' + id,
+      this.baseUrl + 'api/post/soft-delete/' + id,
       ''
     );
   }
