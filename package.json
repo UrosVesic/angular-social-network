@@ -5,7 +5,6 @@
     "ng": "ng",
     "heroku-postbuild": "ng build --prod && npm install -g http-server-spa",
     "start": "http-server-spa dist/angular-social-network index.html $PORT",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
