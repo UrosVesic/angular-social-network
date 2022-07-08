@@ -18,7 +18,7 @@ import { AllUsersComponent } from './user/all-users/all-users.component';
 const routes: Routes = [
   { path: 'sign-up', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', component: HomeComponent },
+  { path: '', component: LoginComponent },
   { path: 'admin', component: PanelComponent, canActivate: [AdminGuard] },
   {
     path: 'create-post',
