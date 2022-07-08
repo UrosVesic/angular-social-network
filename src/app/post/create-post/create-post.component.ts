@@ -44,7 +44,7 @@ export class CreatePostComponent implements OnInit {
     });
   }
   discardPost() {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/home');
   }
   createPost() {
     this.postRequest.title = this.createPostForm.get('title')!.value;
@@ -53,7 +53,7 @@ export class CreatePostComponent implements OnInit {
 
     this.postService.createPost(this.postRequest).subscribe({
       next: (data) => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/home');
         console.log(data);
       },
       error: (error) => {

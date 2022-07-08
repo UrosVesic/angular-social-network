@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'admin', component: PanelComponent, canActivate: [AdminGuard] },
   {
     path: 'create-post',

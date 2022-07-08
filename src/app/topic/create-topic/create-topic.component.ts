@@ -41,6 +41,6 @@ export class CreateTopicComponent implements OnInit {
   }
 
   discard() {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/home');
   }
 }

@@ -79,7 +79,7 @@ export class UpdatePostComponent implements OnInit {
     console.log(this.postModel);
   }
   discardPost() {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/home');
   }
   updatePost() {
     this.postRequest.title = this.createPostForm.get('title')!.value;
