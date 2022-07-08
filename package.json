@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "heroku-postbuild": "ng build --prod && npm install -g http-server-spa",
+    "heroku-postbuild": "ng build --configuration=production",
     "start": "http-server-spa dist/angular-social-network index.html $PORT",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
