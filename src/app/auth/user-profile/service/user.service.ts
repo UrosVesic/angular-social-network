@@ -47,4 +47,8 @@ export class UserService {
   updateUser(user: UserModel) {
     return this.http.patch(this.baseUrl + 'api/user/', user);
   }
+
+  getReportedUsers(): Observable<Array<UserModel>> {
+    return this.http.get<Array<UserModel>>(this.baseUrl + 'api/user/reported');
+  }
 }
