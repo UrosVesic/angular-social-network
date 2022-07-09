@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { Modals } from 'src/app/modals';
 import { PostService } from 'src/app/post/service/post.service';
 import { TopicModel } from 'src/app/topic/topic-model';
 import { TopicService } from 'src/app/topic/topic.service';
@@ -20,7 +21,8 @@ export class CreatePostComponent implements OnInit {
   constructor(
     private router: Router,
     private topicService: TopicService,
-    private postService: PostService
+    private postService: PostService,
+    private modals: Modals
   ) {
     this.createPostForm = new FormGroup({
       title: new FormControl('', Validators.required),
@@ -57,8 +59,7 @@ export class CreatePostComponent implements OnInit {
         console.log(data);
       },
       error: (error) => {
-        throwError(() => error);
-        console.log(error);
+        this.modals.errorNotification(error.error);
       },
     });
   }
