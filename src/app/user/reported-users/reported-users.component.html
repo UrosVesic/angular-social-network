@@ -1,0 +1,16 @@
+<div class="container">
+  <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+
+  <div class="row" *ngFor="let user of users">
+    <div class="col-md-6" *ngIf="searchMatch(user)"><a class=" username" href="/user-profile/{{user.username}}">
+        @{{user.username}}</a>
+      <br>
+      {{user.bio}}
+      <hr />
+    </div>
+    <div class="col-md-6"><button class="btn float-right">Disable user</button>
+      <br>
+      <hr />
+    </div>
+  </div>
+</div>
