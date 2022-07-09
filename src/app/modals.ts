@@ -26,7 +26,7 @@ export class Modals {
   errorNotification(message: string) {
     /*Swal.fire('Cant report', message, 'error');*/
     Swal.fire({
-      title: 'Cant report',
+      title: 'Error',
       text: message,
       icon: 'error',
       confirmButtonColor: 'red',

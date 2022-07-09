@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HeaderComponent } from 'src/app/header/header.component';
+import { Modals } from 'src/app/modals';
 import { AuthService } from '../service/auth.service';
 import { LoginRequestPayload } from './login-request.payload';
 
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private modals: Modals
   ) {
     this.isError = false;
     this.registerSuccessMessage = '';
@@ -49,7 +51,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.loginRequestPayload).subscribe({
       next: (data) => this.router.navigateByUrl('/home'),
-      error: (error) => alert('Login unsuccesfull, check your credidentials'),
+      error: (error) => this.modals.errorNotification(error.error),
     });
   }
 }

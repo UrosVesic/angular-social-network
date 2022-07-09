@@ -12,7 +12,7 @@
       </a>
     </div>
     <div class="flex-grow-1">
-      <div>
+      <div *ngIf="location.city!=''">
         <fa-icon class="loc-icon fa-lg" [icon]="faLoc"></fa-icon>{{location.city}}, {{location.country_name}}
       </div>
     </div>

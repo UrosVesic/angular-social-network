@@ -32,6 +32,7 @@ import { PanelComponent } from './admin/panel/panel.component';
 import { ReportedPostComponent } from './report/unsolved-reported-posts/reported-post.component';
 import { SolvedReportedPostComponent } from './report/solved-reported-post/solved-reported-post.component';
 import { SearchComponent } from './search/search/search.component';
+import { ReportedUsersComponent } from './user/reported-users/reported-users.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { SearchComponent } from './search/search/search.component';
     ReportedPostComponent,
     SolvedReportedPostComponent,
     SearchComponent,
+    ReportedUsersComponent,
   ],
   imports: [
     BrowserModule,
