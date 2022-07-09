@@ -11,6 +11,11 @@
         </span>
       </a>
     </div>
+    <div class="flex-grow-1">
+      <div>
+        <fa-icon class="loc-icon fa-lg" [icon]="faLoc"></fa-icon>{{location.city}}, {{location.country_name}}
+      </div>
+    </div>
     <div class="flex-grow-1 float-right">
       <div *ngIf="isLoggedIn" ngbDropdown class="float-right">
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">

@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  faLocation,
+  faLocationDot,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../auth/service/auth.service';
+import { Location } from 'src/app/public-api/location';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +15,13 @@ import { AuthService } from '../auth/service/auth.service';
 })
 export class HeaderComponent implements OnInit {
   faUser = faUser;
+  faLoc = faLocationDot;
   isLoggedIn: boolean;
   username: string;
+  location: Location = {
+    city: '',
+    country_name: '',
+  };
 
   constructor(private authService: AuthService, private router: Router) {
     this.username = '';
@@ -24,6 +34,9 @@ export class HeaderComponent implements OnInit {
     );
     this.authService.username.subscribe(
       (data: string) => (this.username = data)
+    );
+    this.authService.locatioEmmiter.subscribe(
+      (data: Location) => (this.location = data)
     );
     this.isLoggedIn = this.authService.isLogged();
     this.username = this.authService.getUserName();

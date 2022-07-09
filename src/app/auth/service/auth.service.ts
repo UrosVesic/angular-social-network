@@ -6,6 +6,8 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../login/login-request.payload';
 import { LoginResponse } from '../login/login-response.payload';
 import { environment } from 'src/environments/environment';
+import { Ip } from 'src/app/public-api/ip';
+import { Location } from 'src/app/public-api/location';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +15,12 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
   @Output() username: EventEmitter<string> = new EventEmitter();
+  @Output() locatioEmmiter: EventEmitter<Location> = new EventEmitter();
+  ip: Ip = { ip: '' };
+  location: Location = {
+    city: '',
+    country_name: '',
+  };
   baseUrl = environment.baseUrl;
   constructor(
     private httpClient: HttpClient,
@@ -40,6 +48,22 @@ export class AuthService {
           this.localStorage.store('isAdmin', data.isAdmin);
           this.loggedIn.emit(true);
           this.username.emit(loginRequestPayload.username);
+          this.httpClient
+            .get<Ip>(
+              'https://thingproxy.freeboard.io/fetch/https://api.ipify.org/?format=json'
+            )
+            .subscribe((data) =>
+              this.httpClient
+                .get<Location>(
+                  'https://thingproxy.freeboard.io/fetch/http://api.ipapi.com/' +
+                    data.ip +
+                    '?access_key=74a6d5c01f8c34382fa36ff569c603b4'
+                )
+                .subscribe((data) => {
+                  (this.location = data), this.locatioEmmiter.emit(data);
+                })
+            );
+
           return true;
         })
       );

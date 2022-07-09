@@ -105,6 +105,15 @@ header {
   margin-top: 5px;
 }
 
+.loc-icon {
+  border-radius: 4px;
+  margin-right: 5px;
+  max-height: 24px;
+  max-width: 24px;
+  margin-top: 5px;
+  color: #1C9E5D;
+}
+
 .title-text {
   color: #1c9e5d;
   font-size: 55px;
