@@ -38,12 +38,12 @@ export class LoginComponent implements OnInit {
         params['registered'] !== undefined &&
         params['registered'] === 'true'
       ) {
-        alert('Signup Successful');
+        modals.customSuccessNotification('Succesfull registration, please check your email for verification')
       }
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   login() {
     this.loginRequestPayload.username = this.loginForm.get('username')!.value;

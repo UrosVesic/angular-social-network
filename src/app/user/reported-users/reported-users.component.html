@@ -5,12 +5,17 @@
     <div class="col-md-6" *ngIf="searchMatch(user)"><a class=" username" href="/user-profile/{{user.username}}">
         @{{user.username}}</a>
       <br>
-      {{user.bio}}
+      Number of violations: {{user.numberOfViolations}}
       <hr />
     </div>
-    <div class="col-md-6"><button class="btn float-right">Disable user</button>
+    <div class="col-md-6" *ngIf="user.enabled && !isMyProfile(user)"><button class="btn float-right" (click)="disableUser(user)">Disable user</button>
       <br>
       <hr />
     </div>
+    <div class="col-md-6" *ngIf="!user.enabled !isAdmin(user)"><button class="btn float-right" (click)="enableUser(user)">Enable user</button>
+      <br>
+      <hr />
+    </div>
+    
   </div>
 </div>

@@ -9,14 +9,19 @@ export class Modals {
     Swal.fire(message);
   }
   successNotification() {
-    Swal.fire(
-      'Succesful',
-      'Succesfully reported, your report will be reviewed',
-      'success'
-    );
     Swal.fire({
       title: 'Succesful',
       text: 'Succesfully reported, your report will be reviewed',
+      icon: 'success',
+      confirmButtonColor: '#1C9E5D',
+      confirmButtonText: 'OK',
+    });
+  }
+
+  customSuccessNotification(message: string) {
+    Swal.fire({
+      title: 'Succesful',
+      text: message,
       icon: 'success',
       confirmButtonColor: '#1C9E5D',
       confirmButtonText: 'OK',
