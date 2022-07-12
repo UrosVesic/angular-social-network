@@ -11,6 +11,10 @@
   padding: 5px;
 }
 
+.text{
+  margin-top: 30px;
+}
+
 .readPost {
   background-color: transparent;
   border-color: #1C9E5D;

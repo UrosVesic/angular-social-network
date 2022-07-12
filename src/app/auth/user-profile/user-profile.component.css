@@ -11,6 +11,10 @@
   font-size: x-large;
 }
 
+.container{
+  margin-top: 5px;
+}
+
 .number {
   font-weight: bold;
 }
