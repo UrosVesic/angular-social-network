@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as SockJS from 'sockjs-client';
+import { environment } from 'src/environments/environment';
 import * as Stomp from 'stompjs';
 
 @Injectable({
@@ -8,8 +9,9 @@ import * as Stomp from 'stompjs';
 export class StompService {
   private connecting: boolean = false;
   private topicQueue: any[] = [];
+  baseUrl = environment.baseUrl;
 
-  socket = new SockJS('http://localhost:8080/sba-websocket');
+  socket = new SockJS(this.baseUrl + 'sba-websocket');
   stompClient = Stomp.over(this.socket);
 
   subscribe(topic: string, callback: any): void {
