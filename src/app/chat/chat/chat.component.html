@@ -1,3 +1,20 @@
 <div class="container">
-  <div *ngFor="let message of messages"></div>
+  <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+    <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+      Chat with {{ username }}
+    </div>
+    <div class="list-group list-group-flush border-bottom scrollarea">
+      <div class="list-group-item list-group-item-action py-3 lh-tight"
+           *ngFor="let msg of messages"
+      >
+        <div class="d-flex w-100 align-items-center justify-content-between">
+          <strong class="mb-1">{{msg.from}}</strong>
+        </div>
+        <div class="col-10 mb-1 small">{{msg.content}}</div>
+      </div>
+    </div>
+  </div>
+  <form (submit)="send()">
+    <input class="form-control" placeholder="Write a message"/>
+  </form>
 </div>

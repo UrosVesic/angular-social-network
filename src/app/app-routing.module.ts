@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'update-post/:id', component: UpdatePostComponent },
   { path: 'all-users/:info', component: AllUsersComponent },
   { path: 'change-profile/:username', component: ChangeProfileComponent },
-  { path: 'chat', component: ChatComponent },
+  { path: 'chat/:username', component: ChatComponent },
   {
     path: 'user-profile/:username',
     component: UserProfileComponent,
@@ -50,4 +50,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
