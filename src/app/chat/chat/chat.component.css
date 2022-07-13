@@ -1,7 +1,91 @@
-.container{
-    margin-top: 10px;
+* {
+  font-family: 'Avenir';
 }
 
-.scrollarea {
-  min-height: 300px;
+.bubbleWrapperOther {
+  padding: 10px 10px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-self: flex-end;
+  color: #1C9E5D;
+}
+
+.bubbleWrapperMy {
+  padding: 10px 10px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-self: flex-end;
+  color: #fff;
+}
+
+.inlineContainer {
+  display: inline-flex;
+}
+
+.inlineContainer.own {
+  flex-direction: row-reverse;
+}
+
+.inlineIcon {
+  width: 20px;
+  object-fit: contain;
+}
+
+.ownBubble {
+  min-width: 60px;
+  max-width: 700px;
+  padding: 14px 18px;
+  margin: 2px 4px;
+  background-color: white;
+  border-radius: 16px 16px 0 16px;
+  border: 1px solid #1C9E5D;
+
+}
+
+.otherBubble {
+  min-width: 60px;
+  max-width: 700px;
+  padding: 14px 18px;
+  margin: 2px 4px;
+  background-color: #1C9E5D;
+  border-radius: 16px 16px 16px 0;
+  border: 1px solid #1C9E5D;
+
+}
+
+.own {
+  align-self: flex-end;
+}
+
+.other {
+  align-self: flex-start;
+}
+
+span.own,
+span.other {
+  font-size: 14px;
+  color: grey;
+}
+
+.btn {
+  fill: #1C9E5D;
+  border: 1px solid;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  line-height: 24px;
+  text-transform: uppercase;
+  padding: 3px 16px;
+  opacity: 1;
+  background-color: #1C9E5D;
+  border-color: #1C9E5D;
+  color: aliceblue;
+  margin-right: 25px;
 }

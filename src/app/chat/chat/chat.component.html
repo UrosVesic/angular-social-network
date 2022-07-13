@@ -1,20 +1,24 @@
-<div class="container">
-  <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
-    <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-      Chat with {{ username }}
-    </div>
-    <div class="list-group list-group-flush border-bottom scrollarea">
-      <div class="list-group-item list-group-item-action py-3 lh-tight"
-           *ngFor="let msg of messages"
-      >
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">{{msg.from}}</strong>
+<div class="container">Chat with {{username}}</div>
+<div class="container" style="overflow: scroll; height: 700px;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+  <hr>
+  <div *ngFor="let msg of messages">
+    <div class="bubbleWrapperMy" *ngIf="myMessage(msg)">
+      <div class="inlineContainer">
+        <div class="otherBubble other">
+          {{msg.content}}
         </div>
-        <div class="col-10 mb-1 small">{{msg.content}}</div>
-      </div>
+      </div><span class="other">{{msg.time}}</span>
+    </div>
+    <div class="bubbleWrapperOther" *ngIf="!myMessage(msg)">
+      <div class="inlineContainer own">
+        <div class="ownBubble own">
+          {{msg.content}}
+        </div>
+      </div><span class="own">{{msg.time}}</span>
     </div>
   </div>
-  <form (submit)="send()">
-    <input class="form-control" placeholder="Write a message"/>
-  </form>
+
+  <input class="form-control" placeholder="Write a message" [(ngModel)]="messageToSend" />
+  <button class="btn" (click)="send()">Send</button>
+
 </div>
