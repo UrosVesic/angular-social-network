@@ -13,7 +13,7 @@
               <div class="col-md-6">
                 <input type="text" id="user_name" class="form-control" [formControlName]="'username'" name="user_name"
                   required autofocus>
-                <span *ngIf="!loginForm.get('username').valid && loginForm.get('username')!.touched">
+                <span *ngIf="!loginForm.get('username')!.valid && loginForm.get('username')!.touched">
                   Please provide a valid username
                 </span>
               </div>
@@ -24,7 +24,7 @@
               <div class="col-md-6">
                 <input type="password" id="password" class="form-control" [formControlName]="'password'" name="password"
                   required>
-                <span *ngIf="!loginForm.get('password').valid && loginForm.get('password')!.touched">
+                <span *ngIf="!loginForm.get('password')!.valid && loginForm.get('password')!.touched">
                   Please provide a valid password
                 </span>
               </div>
@@ -36,9 +36,6 @@
               </button>
               <span style="padding-left: 10px">Dont have an account?<a routerLink="/sign-up">SIGN UP</a></span>
             </span>
-            <!--<div class="login-failed" *ngIf='this.isError'>
-              <p class="login-failed-text">Login Failed. Please check your credentials and try again.</p>
-            </div>-->
           </form>
         </div>
       </div>
