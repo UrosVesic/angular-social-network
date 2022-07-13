@@ -33,6 +33,7 @@ import { ReportedPostComponent } from './report/unsolved-reported-posts/reported
 import { SolvedReportedPostComponent } from './report/solved-reported-post/solved-reported-post.component';
 import { SearchComponent } from './search/search/search.component';
 import { ReportedUsersComponent } from './user/reported-users/reported-users.component';
+import { ChatComponent } from './chat/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ReportedUsersComponent } from './user/reported-users/reported-users.com
     SolvedReportedPostComponent,
     SearchComponent,
     ReportedUsersComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { LoginGuard } from './auth/login.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
+import { ChatComponent } from './chat/chat/chat.component';
 import { HomeComponent } from './home/home.component';
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { UpdatePostComponent } from './post/update-post/update-post.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'update-post/:id', component: UpdatePostComponent },
   { path: 'all-users/:info', component: AllUsersComponent },
   { path: 'change-profile/:username', component: ChangeProfileComponent },
+  { path: 'chat', component: ChatComponent },
   {
     path: 'user-profile/:username',
     component: UserProfileComponent,
