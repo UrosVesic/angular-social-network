@@ -84,4 +84,8 @@ export class UserProfileComponent implements OnInit {
   goToChangeProfile() {
     this.router.navigateByUrl('change-profile/' + this.username);
   }
+
+  goToChat() {
+    this.router.navigateByUrl('chat/' + this.username);
+  }
 }

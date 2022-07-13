@@ -11,12 +11,15 @@
             <div class="col-md-6 username">
               @{{username}}
             </div>
-            <div class="col-md-6 " *ngIf="!yourProfile()">
+            <div class="col-md-3 " *ngIf="!yourProfile()">
               <button *ngIf="!following()" class="btn float-right" (click)="follow()">Follow</button>
               <button *ngIf="following()" class="btn float-right" (click)="unfollow()">Unfollow</button>
             </div>
             <div class="col-md-6 " *ngIf="yourProfile()">
               <button class="btn float-right" (click)="goToChangeProfile()">Change</button>
+            </div>
+            <div class="col-md-3 " *ngIf="!yourProfile()">
+              <button class="btn float-right" (click)="goToChat()">Chat</button>
             </div>
           </div>
           <div class="container d-flex">
