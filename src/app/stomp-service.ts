@@ -11,7 +11,7 @@ export class StompService {
   private topicQueue: any[] = [];
   baseUrl = environment.baseUrl;
 
-  socket = new SockJS(this.baseUrl + '/sba-websocket');
+  socket = new SockJS(this.baseUrl + 'sba-websocket');
   stompClient = Stomp.over(this.socket);
 
   subscribe(topic: string, callback: any): void {
