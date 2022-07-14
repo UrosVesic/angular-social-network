@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { StompService } from 'src/app/stomp-service';
@@ -13,15 +14,19 @@ import { Message } from './message';
 })
 export class ChatComponent implements OnInit {
   messages: Message[] = [];
-  messageToSend: string = '';
   username: string = '';
+  chat: FormGroup;
 
   constructor(
     private stomp: StompService,
     private chatService: ChatService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService
-  ) {}
+  ) {
+    this.chat = new FormGroup({
+      messageToSend: new FormControl('', Validators.required),
+    });
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((routeParams) => {
@@ -48,16 +53,18 @@ export class ChatComponent implements OnInit {
   }
 
   send() {
+    let date = new Date();
+    let time = date.getHours() + ':' + date.getMinutes();
     let message = new Message();
-    console.log(this.messageToSend);
-    message.content = this.messageToSend;
+    console.log(this.chat.get('messageToSend')!.value);
+    message.content = this.chat.get('messageToSend')!.value;
     message.from = this.authService.getUserName();
     message.to = this.username;
     this.chatService.sendMessage(message).subscribe({
-      next: () => this.messages.push(message),
+      next: () => ((message.time = time), this.messages.push(message)),
       error: (error) => console.log(error),
     });
-    this.messageToSend = '';
+    this.chat.reset();
   }
 
   myMessage(msg: Message) {

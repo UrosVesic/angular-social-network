@@ -1,5 +1,5 @@
-<div class="container">Chat with {{username}}</div>
-<div class="container" style="overflow: scroll; height: 500px;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+<div class="container d-flex">Chat with {{username}}</div>
+<div class="container" style="overflow: scroll; height: 600px;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
   <hr>
   <div *ngFor="let msg of messages">
     <div class="bubbleWrapperMy" *ngIf="myMessage(msg)">
@@ -17,8 +17,8 @@
       </div><span class="own">{{msg.time}}</span>
     </div>
   </div>
-
-  <input class="form-control" placeholder="Write a message" [(ngModel)]="messageToSend" />
-  <button class="btn" (click)="send()">Send</button>
-
+  <form [formGroup]="chat" (ngSubmit)="send()">
+    <input class="form-control" placeholder="Write a message" [formControlName]="'messageToSend'" />
+    <button class="btn">Send</button>
+  </form>
 </div>
