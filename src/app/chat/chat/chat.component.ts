@@ -54,7 +54,15 @@ export class ChatComponent implements OnInit {
 
   send() {
     let date = new Date();
-    let time = date.getHours() + ':' + date.getMinutes();
+    let mintes = date.getMinutes();
+    let strmin;
+    if (mintes < 10) {
+      strmin = '0' + mintes;
+    } else {
+      strmin = mintes;
+    }
+
+    let time = date.getHours() + ':' + strmin;
     let message = new Message();
     console.log(this.chat.get('messageToSend')!.value);
     message.content = this.chat.get('messageToSend')!.value;
