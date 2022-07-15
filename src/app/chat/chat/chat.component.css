@@ -69,6 +69,18 @@ span.other {
   color: grey;
 }
 
+.input-button-form {
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  max-width: 90%;
+}
+
+
 .btn {
   fill: #1C9E5D;
   border: 1px solid;
@@ -87,5 +99,5 @@ span.other {
   background-color: #1C9E5D;
   border-color: #1C9E5D;
   color: aliceblue;
-  margin-right: 25px;
+  margin-left: 25px;
 }

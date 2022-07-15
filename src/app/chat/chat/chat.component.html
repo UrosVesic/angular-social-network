@@ -1,24 +1,27 @@
 <div class="container d-flex">Chat with {{username}}</div>
-<div class="container" style="overflow: scroll; height: 600px;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-  <hr>
-  <div *ngFor="let msg of messages">
-    <div class="bubbleWrapperMy" *ngIf="myMessage(msg)">
-      <div class="inlineContainer">
-        <div class="otherBubble other">
-          {{msg.content}}
-        </div>
-      </div><span class="other">{{msg.time}}</span>
+<div style="max-height: 100vh;">
+
+  <div class="container" style="overflow: scroll; max-height: 80vh;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <hr>
+    <div *ngFor="let msg of messages">
+      <div class="bubbleWrapperMy" *ngIf="myMessage(msg)">
+        <div class="inlineContainer">
+          <div class="otherBubble other">
+            {{msg.content}}
+          </div>
+        </div><span class="other">{{msg.time}}</span>
+      </div>
+      <div class="bubbleWrapperOther" *ngIf="!myMessage(msg)">
+        <div class="inlineContainer own">
+          <div class="ownBubble own">
+            {{msg.content}}
+          </div>
+        </div><span class="own">{{msg.time}}</span>
+      </div>
     </div>
-    <div class="bubbleWrapperOther" *ngIf="!myMessage(msg)">
-      <div class="inlineContainer own">
-        <div class="ownBubble own">
-          {{msg.content}}
-        </div>
-      </div><span class="own">{{msg.time}}</span>
-    </div>
+    <form class="input-button-form" [formGroup]="chat" (ngSubmit)="send()">
+      <input class="form-control" placeholder="Write a message" [formControlName]="'messageToSend'" />
+      <button class="btn">Send</button>
+    </form>
   </div>
-  <form [formGroup]="chat" (ngSubmit)="send()">
-    <input class="form-control" placeholder="Write a message" [formControlName]="'messageToSend'" />
-    <button class="btn">Send</button>
-  </form>
 </div>
