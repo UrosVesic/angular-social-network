@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit {
     private authService: AuthService
   ) {
     this.chat = new FormGroup({
-      messageToSend: new FormControl('', Validators.required),
+      messageToSend: new FormControl(''),
     });
   }
 
