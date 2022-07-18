@@ -1,20 +1,26 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { StompService } from 'src/app/stomp-service';
 import { ChatService } from '../service/chat.service';
-import { Message } from './message';
+import { MessageDto } from './message';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css'],
 })
-export class ChatComponent implements OnInit {
-  messages: Message[] = [];
-  username: string = '';
+export class ChatComponent implements OnInit, OnChanges {
+  messages: MessageDto[] = [];
+  @Input() username: string = '';
   chat: FormGroup;
 
   constructor(
@@ -28,13 +34,11 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.getAllMessagesFromChat();
+  }
+
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((routeParams) => {
-      this.username = routeParams['username'];
-    });
-    console.log(
-      '/topic/' + this.authService.getUserName() + '/' + this.username
-    );
     this.stomp.subscribe(
       '/topic/' + this.authService.getUserName(),
       (): any => {
@@ -63,7 +67,7 @@ export class ChatComponent implements OnInit {
     }
 
     let time = date.getHours() + ':' + strmin;
-    let message = new Message();
+    let message = new MessageDto();
     console.log(this.chat.get('messageToSend')!.value);
     message.content = this.chat.get('messageToSend')!.value;
     message.from = this.authService.getUserName();
@@ -75,7 +79,7 @@ export class ChatComponent implements OnInit {
     this.chat.reset();
   }
 
-  myMessage(msg: Message) {
+  myMessage(msg: MessageDto) {
     return msg.from == this.authService.getUserName();
   }
 
