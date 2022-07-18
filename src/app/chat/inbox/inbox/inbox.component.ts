@@ -10,7 +10,7 @@ import { ChatService } from '../../service/chat.service';
   styleUrls: ['./inbox.component.css'],
 })
 export class InboxComponent implements OnInit {
-  username: string = 'pera';
+  username: string = '';
   inboxMessages: InboxMessage[] = [];
 
   constructor(
@@ -20,12 +20,6 @@ export class InboxComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.stomp.subscribe(
-      '/topic/' + this.authService.getUserName(),
-      (): any => {
-        this.getInboxMessages();
-      }
-    );
     this.getInboxMessages();
   }
 
