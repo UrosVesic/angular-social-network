@@ -1,7 +1,15 @@
-<div class="container d-flex">Chat with {{username}}</div>
-<div style="max-height: 100vh;">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-  <div class="container" style="overflow: scroll; max-height: 80vh;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+
+
+<div class="container d-flex" id="ime">
+  <h1>{{username}}</h1>
+</div>
+<div class="full-container">
+  <div class="container" style=" overflow: scroll; overflow-x: hidden; " #scrollMe [scrollTop]="scrollMe.scrollHeight">
     <hr>
     <div *ngFor="let msg of messages">
       <div class="bubbleWrapperMy" *ngIf="myMessage(msg)">
@@ -19,9 +27,14 @@
         </div><span class="own">{{msg.time}}</span>
       </div>
     </div>
+
+  </div>
+  <div class="send-message">
     <form class="input-button-form" [formGroup]="chat" (ngSubmit)="send()">
-      <input class="form-control" placeholder="Write a message" [formControlName]="'messageToSend'" />
-      <button class="btn">Send</button>
+      <input class="form-control" placeholder=" Write a message" [formControlName]="'messageToSend'" />
+      <button class="btn-send"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+
+      </button>
     </form>
   </div>
 </div>
