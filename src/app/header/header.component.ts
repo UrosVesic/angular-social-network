@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
+  faInbox,
   faLocation,
   faLocationDot,
   faUser,
@@ -16,6 +17,7 @@ import { Location } from 'src/app/public-api/location';
 export class HeaderComponent implements OnInit {
   faUser = faUser;
   faLoc = faLocationDot;
+  faInbox = faInbox;
   isLoggedIn: boolean;
   username: string;
   location: Location = {

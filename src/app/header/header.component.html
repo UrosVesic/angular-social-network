@@ -28,11 +28,16 @@
           <fa-icon class="account-icon fa-lg" [icon]="faUser"></fa-icon>
           {{username}}
         </button>
+        <a href="/inbox">
+          <fa-icon class="inbox-icon fa-lg" [icon]="faInbox"></fa-icon>
+        </a>
       </div>
       <div *ngIf="!isLoggedIn">
         <a routerLink="/sign-up" class="float-right sign-up mr-2">Sign up</a>
         <a routerLink="/login" class="float-right login mr-2">Login</a>
       </div>
+
+
     </div>
   </nav>
 </header>
