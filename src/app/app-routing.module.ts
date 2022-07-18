@@ -8,6 +8,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { ChatComponent } from './chat/chat/chat.component';
+import { InboxComponent } from './chat/inbox/inbox/inbox.component';
 import { HomeComponent } from './home/home.component';
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { UpdatePostComponent } from './post/update-post/update-post.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'inbox', component: InboxComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: PanelComponent, canActivate: [AdminGuard] },
   {
     path: 'create-post',

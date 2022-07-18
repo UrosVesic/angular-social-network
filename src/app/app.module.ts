@@ -34,6 +34,7 @@ import { SolvedReportedPostComponent } from './report/solved-reported-post/solve
 import { SearchComponent } from './search/search/search.component';
 import { ReportedUsersComponent } from './user/reported-users/reported-users.component';
 import { ChatComponent } from './chat/chat/chat.component';
+import { InboxComponent } from './chat/inbox/inbox/inbox.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ChatComponent } from './chat/chat/chat.component';
     SearchComponent,
     ReportedUsersComponent,
     ChatComponent,
+    InboxComponent,
   ],
   imports: [
     BrowserModule,
