@@ -1,0 +1,25 @@
+.full-container {
+  padding-left: 20px;
+}
+
+.search {
+  padding-left: 50px;
+  width: 100%;
+}
+
+.inbox-msg {
+  border: solid 1px;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+}
+
+.msg:hover {
+  background-color: gray;
+}
+
+.with {
+  font-weight: bold;
+}

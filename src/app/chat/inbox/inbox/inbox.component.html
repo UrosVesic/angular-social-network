@@ -1,0 +1,20 @@
+  <div class="row full-container">
+    <div class=" search col-md-2">
+      <div class="row">
+        <input type="text" placeholder="search" />
+      </div>
+      <div class="row msg" *ngFor="let msg of inboxMessages" (click)="print(msg)">
+        <div class=" inbox-msg">
+          <div class="with">{{msg.with}}</div>
+          <div>{{msg.content}}</div>
+          <div>{{msg.time}}</div>
+        </div>
+        <br>
+      </div>
+
+
+    </div>
+    <div class="col-md-10 float-left">
+      <app-chat [username]="username"></app-chat>
+    </div>
+  </div>
