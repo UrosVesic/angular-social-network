@@ -1,4 +1,4 @@
-export class Message {
+export class MessageDto {
   content: string = '';
   from: string = '';
   to: string = '';
