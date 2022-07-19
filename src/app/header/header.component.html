@@ -12,8 +12,29 @@
       </a>
     </div>
     <div class="flex-grow-1">
-      <div *ngIf="location.city!=''">
-        <fa-icon class="loc-icon fa-lg" [icon]="faLoc"></fa-icon>{{location.city}}, {{location.country_name}}
+      <div class=" col">
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
+            <fa-icon class="account-icon fa-lg" [icon]="faBell"></fa-icon>
+          </button>
+          <div ngbDropdownMenu style=" overflow: scroll; max-height: 200px; overflow-x: hidden; "
+            aria-labelledby=" dropdownBasic1">
+            <div class="not" ngbDropdownItem *ngFor="let n of notifications" (click)="markAsRead(n)">
+              <div class="not-msg1" *ngIf="n.read">
+                {{n.message}}
+              </div>
+              <div class="not-msg2 d-flex" *ngIf="!n.read">
+                <div>{{n.message}}</div>
+                <div>
+                  <span class="dot"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-inline-block float-left not-count" *ngIf="notification_count!=0">
+            <p class="num">{{notification_count}}</p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="flex-grow-1 float-right">
@@ -36,6 +57,7 @@
         <a routerLink="/sign-up" class="float-right sign-up mr-2">Sign up</a>
         <a routerLink="/login" class="float-right login mr-2">Login</a>
       </div>
+
 
 
     </div>
