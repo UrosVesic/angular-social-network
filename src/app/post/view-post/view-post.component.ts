@@ -65,18 +65,21 @@ export class ViewPostComponent implements OnInit {
       username: '',
       duration: '',
     };
-    this.post.id = this.activateRoute.snapshot.params['id'];
-    this.postService.getPost(this.post.id).subscribe({
-      next: (data) => {
-        this.post = data;
-        this.postOwnedByLoggedUser = authService.getUserName() == data.userName;
-      },
-      error: (error) => throwError(() => error),
-    });
   }
 
   ngOnInit(): void {
     this.getCommentsForPost();
+    this.activateRoute.params.subscribe((routeParams) => {
+      (this.post.id = routeParams['id']),
+        this.postService.getPost(this.post.id).subscribe({
+          next: (data) => {
+            this.post = data;
+            this.postOwnedByLoggedUser =
+              this.authService.getUserName() == data.userName;
+          },
+          error: (error) => throwError(() => error),
+        });
+    });
   }
 
   getPostById() {
