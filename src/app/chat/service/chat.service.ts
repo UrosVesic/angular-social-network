@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/service/auth.service';
 import { environment } from 'src/environments/environment';
 import { MessageDto } from '../chat/message';
 import { InboxMessage } from '../inbox-message';
@@ -10,15 +11,26 @@ import { InboxMessage } from '../inbox-message';
 })
 export class ChatService {
   baseUrl = environment.baseUrl;
+  @Output() sentMessage: EventEmitter<string> = new EventEmitter();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getAllMessages(): Observable<Array<MessageDto>> {
     return this.http.get<Array<MessageDto>>(this.baseUrl + 'api/message/all');
   }
 
   sendMessage(message: MessageDto): Observable<any> {
-    return this.http.post(this.baseUrl + 'api/message/' + message.to, message);
+    let any = this.http.post(
+      this.baseUrl + 'api/message/' + message.to,
+      message
+    );
+    console.log(message.to);
+    if (message.to == this.authService.getUserName()) {
+      this.sentMessage.emit(message.from);
+    } else {
+      this.sentMessage.emit(message.to);
+    }
+    return any;
   }
 
   getLastMessage(from: string, to: string) {

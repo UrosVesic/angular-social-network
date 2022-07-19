@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -22,6 +24,7 @@ export class ChatComponent implements OnInit, OnChanges {
   messages: MessageDto[] = [];
   @Input() username: string = '';
   chat: FormGroup;
+  @Output() callParent = new EventEmitter();
 
   constructor(
     private stomp: StompService,
@@ -73,7 +76,11 @@ export class ChatComponent implements OnInit, OnChanges {
     message.from = this.authService.getUserName();
     message.to = this.username;
     this.chatService.sendMessage(message).subscribe({
-      next: () => ((message.time = time), this.messages.push(message)),
+      next: () => (
+        (message.time = time),
+        this.messages.push(message),
+        this.callParent.emit(message)
+      ),
       error: (error) => console.log(error),
     });
     this.chat.reset();
@@ -85,9 +92,10 @@ export class ChatComponent implements OnInit, OnChanges {
 
   getLastMessage() {
     this.chatService
-      .getLastMessage(this.authService.getUserName(), this.username)
+      .getLastMessage(this.username, this.authService.getUserName())
       .subscribe((data) => {
         this.messages.push(data);
       });
+    this.callParent.emit('');
   }
 }
