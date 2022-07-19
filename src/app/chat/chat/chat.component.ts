@@ -14,6 +14,7 @@ import { AuthService } from 'src/app/auth/service/auth.service';
 import { StompService } from 'src/app/stomp-service';
 import { ChatService } from '../service/chat.service';
 import { MessageDto } from './message';
+import { Frame } from './websocket-mess';
 
 @Component({
   selector: 'app-chat',
@@ -44,11 +45,15 @@ export class ChatComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.stomp.subscribe(
       '/topic/' + this.authService.getUserName(),
-      (): any => {
-        this.getLastMessage();
+      (msg: Frame) => {
+        if (msg.body == this.username) {
+          this.getLastMessage();
+        } else {
+          this.callParent.emit('');
+        }
       }
     );
-    this.getAllMessagesFromChat();
+    //this.getAllMessagesFromChat();
   }
   getAllMessagesFromChat() {
     this.chatService
@@ -96,6 +101,5 @@ export class ChatComponent implements OnInit, OnChanges {
       .subscribe((data) => {
         this.messages.push(data);
       });
-    this.callParent.emit('');
   }
 }
