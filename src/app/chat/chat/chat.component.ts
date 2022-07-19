@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -11,6 +13,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/service/auth.service';
+import { UserModel } from 'src/app/auth/user-profile/user-model';
 import { StompService } from 'src/app/stomp-service';
 import { ChatService } from '../service/chat.service';
 import { MessageDto } from './message';
@@ -43,6 +46,13 @@ export class ChatComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe((routeParams) => {
+      if (routeParams['username'] != '') {
+        console.log('aaaa');
+        this.username = routeParams['username'];
+        this.getAllMessagesFromChat();
+      }
+    });
     this.stomp.subscribe(
       '/topic/' + this.authService.getUserName(),
       (msg: Frame) => {
@@ -53,7 +63,6 @@ export class ChatComponent implements OnInit, OnChanges {
         }
       }
     );
-    //this.getAllMessagesFromChat();
   }
   getAllMessagesFromChat() {
     this.chatService
