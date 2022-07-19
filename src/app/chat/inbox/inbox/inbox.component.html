@@ -1,17 +1,26 @@
   <div class="row full-container">
     <div class=" search col-md-2">
       <div class="row">
-        <input type="text" placeholder="search" />
+        <input type="text" placeholder="Search users you follow" [(ngModel)]="enteredValue"
+          (input)="searchTextChanged()" />
       </div>
-      <div class="row msg" *ngFor="let msg of inboxMessages" (click)="print(msg)">
-        <div class=" inbox-msg">
-          <div class="with">{{msg.with}}</div>
-          <div>{{msg.content}}</div>
-          <div>{{msg.time}}</div>
+      <div *ngIf="enteredValue==''  || inboxContainsUser()">
+        <div class="row msg" *ngFor="let msg of inboxMessages" (click)="viewMessages(msg.with)">
+          <div class=" inbox-msg" *ngIf="searchMatch(msg.with)">
+            <div class="with">{{msg.with}}</div>
+            <div>{{msg.content}}</div>
+            <div>{{msg.time}}</div>
+          </div>
+          <br>
         </div>
-        <br>
       </div>
-
+      <div *ngIf="enteredValue!='' && !inboxContainsUser()">
+        <div class="row msg" *ngFor="let user of users" (click)="viewMessages(user.username)">
+          <div class=" inbox-msg" *ngIf="searchMatch(user.username)">
+            <div class="with">{{user.username}}</div>
+          </div>
+        </div>
+      </div>
 
     </div>
     <div class="col-md-10 float-left">

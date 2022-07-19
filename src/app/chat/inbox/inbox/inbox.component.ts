@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/service/auth.service';
+import { UserService } from 'src/app/auth/user-profile/service/user.service';
+import { UserModel } from 'src/app/auth/user-profile/user-model';
 import { StompService } from 'src/app/stomp-service';
 import { MessageDto } from '../../chat/message';
 import { InboxMessage } from '../../inbox-message';
@@ -13,11 +15,14 @@ export class InboxComponent implements OnInit {
   username: string = '';
   inboxMessages: InboxMessage[] = [];
   msg: MessageDto;
+  enteredValue: string = '';
+  users: UserModel[] = [];
 
   constructor(
     private chatService: ChatService,
     private authService: AuthService,
-    private stomp: StompService
+    private stomp: StompService,
+    private userService: UserService
   ) {
     this.msg = {
       content: '',
@@ -65,14 +70,39 @@ export class InboxComponent implements OnInit {
     }
   }
 
-  print(msg: InboxMessage) {
-    console.log(msg.content);
-    this.username = msg.with;
+  viewMessages(username: string) {
+    this.username = username;
   }
 
   getInboxMessages() {
     this.chatService
       .getInboxMessages()
       .subscribe((data) => (this.inboxMessages = data));
+  }
+
+  searchTextChanged() {
+    if (this.users.length == 0) {
+      this.userService
+        .getAllFollowingForUser(this.authService.getUserName())
+        .subscribe((data) => {
+          this.users = data;
+        });
+    }
+  }
+  searchMatch(username: string) {
+    if (this.enteredValue == '') {
+      return true;
+    }
+    return username.includes(this.enteredValue);
+  }
+
+  inboxContainsUser() {
+    for (let i = 0; i < this.inboxMessages.length; i++) {
+      const element = this.inboxMessages[i];
+      if (element.with.includes(this.enteredValue)) {
+        return true;
+      }
+    }
+    return false;
   }
 }
