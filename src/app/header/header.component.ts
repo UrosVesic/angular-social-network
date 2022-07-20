@@ -97,7 +97,7 @@ export class HeaderComponent implements OnInit {
   }
   getLastNotification() {
     this.notificationService.getLastNotification().subscribe((data) => {
-      this.notifications.push(data),
+      this.notifications.unshift(data),
         (this.notification_count = this.computeNotificationCount());
     });
   }
