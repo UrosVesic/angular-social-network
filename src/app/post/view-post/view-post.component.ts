@@ -78,7 +78,8 @@ export class ViewPostComponent implements OnInit {
               this.authService.getUserName() == data.userName;
           },
           error: (error) => throwError(() => error),
-        });
+        }),
+        this.getCommentsForPost();
     });
   }
 
