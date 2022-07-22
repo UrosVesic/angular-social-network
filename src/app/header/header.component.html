@@ -12,7 +12,7 @@
       </a>
     </div>
     <div class="flex-grow-1">
-      <div class=" col">
+      <div class=" col" *ngIf="isLoggedIn">
         <div ngbDropdown class="d-inline-block">
           <button type="button" class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
             <fa-icon class="account-icon fa-lg" [icon]="faBell"></fa-icon>

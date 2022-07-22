@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
     );
     this.getAllNotifications();
     this.authService.loggedIn.subscribe(
-      (data: boolean) => (this.isLoggedIn = data)
+      (data: boolean) => ((this.isLoggedIn = data), this.getAllNotifications())
     );
     this.authService.username.subscribe(
       (data: string) => (this.username = data)
