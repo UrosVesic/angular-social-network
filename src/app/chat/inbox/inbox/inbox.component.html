@@ -5,17 +5,25 @@
           (input)="searchTextChanged()" />
       </div>
       <div *ngIf="enteredValue==''  || inboxContainsUser()">
-        <div class="row msg" *ngFor="let msg of inboxMessages" (click)="viewMessages(msg.with)">
-          <div class=" inbox-msg" *ngIf="searchMatch(msg.with)">
+
+        <div class="row msg" *ngFor="let msg of inboxMessages" (click)="viewMessages(msg.with,msg)">
+          <div class="col-md-9">
             <div class="with">{{msg.with}}</div>
             <div>{{msg.content}}</div>
             <div>{{msg.time}}</div>
           </div>
-          <br>
+          <div class="col-md-2">
+            <div class="dot" *ngIf="msg.newMessages!=0">
+              <p class="num">{{msg.newMessages}}</p>
+            </div>
+          </div>
         </div>
+        <br>
+
+
       </div>
       <div *ngIf="enteredValue!='' && !inboxContainsUser()">
-        <div class="row msg" *ngFor="let user of users" (click)="viewMessages(user.username)">
+        <div class="row msg" *ngFor="let user of users" (click)="viewMessages(user.username,null!)">
           <div class=" inbox-msg" *ngIf="searchMatch(user.username)">
             <div class="with">{{user.username}}</div>
           </div>
@@ -24,6 +32,6 @@
 
     </div>
     <div class="col-md-10 float-left">
-      <app-chat [username]="username" (callParent)="getMsgFromBaby($event)"></app-chat>
+      <app-chat [username]="username" (callParent)="getMsgFromBaby($event)" (read)="readMessages($event)"></app-chat>
     </div>
   </div>
