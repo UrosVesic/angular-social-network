@@ -13,6 +13,8 @@ import { Location } from 'src/app/public-api/location';
 import { StompService } from '../stomp-service';
 import { NotificationService } from '../notification/notification.service';
 import { NotificationModel } from '../notification/notification-model';
+import { Frame } from '../chat/chat/websocket-mess';
+import { ChatService } from '../chat/service/chat.service';
 
 @Component({
   selector: 'app-header',
@@ -33,30 +35,44 @@ export class HeaderComponent implements OnInit {
   };
   notifications: NotificationModel[] = [];
   notification_count: number = 0;
+  message_count: number = 0;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private stomp: StompService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private chatService: ChatService
   ) {
     this.username = '';
     this.isLoggedIn = this.authService.isLogged();
+    this.getNumberOfNewMsg();
   }
 
   ngOnInit(): void {
     console.log('/topic/notification/' + this.authService.getUserName());
     this.stomp.subscribe(
       '/topic/notification/' + this.authService.getUserName(),
-      () => {
-        console.log('primio sam notifikaciju aaaaaaaaaaaaaaaaa');
-        this.getLastNotification();
-        this.notification_count = this.computeNotificationCount();
+      (msg: Frame) => {
+        if (msg.body == 'notification') {
+          this.getLastNotification();
+          this.notification_count = this.computeNotificationCount();
+        }
+        if (msg.body == 'message') {
+          this.message_count++;
+        }
       }
     );
     this.getAllNotifications();
     this.authService.loggedIn.subscribe(
-      (data: boolean) => ((this.isLoggedIn = data), this.getAllNotifications())
+      (data: boolean) => (
+        (this.isLoggedIn = data),
+        this.getAllNotifications(),
+        this.getNumberOfNewMsg()
+      )
+    );
+    this.chatService.numberOfSeenMessages.subscribe(
+      (data: number) => (this.message_count = this.message_count - data)
     );
     this.authService.username.subscribe(
       (data: string) => (this.username = data)
@@ -107,6 +123,13 @@ export class HeaderComponent implements OnInit {
       this.notification_count = this.computeNotificationCount();
     });
   }
+
+  getNumberOfNewMsg() {
+    this.chatService
+      .getNumberOfNewMsg()
+      .subscribe((data) => (this.message_count = data));
+  }
+
   markAsRead(n: NotificationModel) {
     this.notificationService.markAsRead(n).subscribe({
       next: () => (
