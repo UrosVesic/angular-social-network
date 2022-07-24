@@ -31,7 +31,8 @@
   </div>
   <div class="send-message">
     <form class="input-button-form" [formGroup]="chat" (ngSubmit)="send()">
-      <input class="form-control" placeholder=" Write a message" [formControlName]="'messageToSend'" />
+      <input class="form-control" placeholder=" Write a message" [formControlName]="'messageToSend'"
+        (focus)="readMessages()" />
       <button class="btn-send"><i class="fa fa-paper-plane" aria-hidden="true"></i>
 
       </button>

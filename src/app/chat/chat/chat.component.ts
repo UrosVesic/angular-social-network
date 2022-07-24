@@ -29,6 +29,7 @@ export class ChatComponent implements OnInit, OnChanges {
   @Input() username: string = '';
   chat: FormGroup;
   @Output() callParent = new EventEmitter();
+  @Output() read = new EventEmitter<string>();
 
   constructor(
     private stomp: StompService,
@@ -58,6 +59,7 @@ export class ChatComponent implements OnInit, OnChanges {
       (msg: Frame) => {
         if (msg.body == this.username) {
           this.getLastMessage();
+          this.callParent.emit('');
         } else {
           this.callParent.emit('');
         }
@@ -65,12 +67,14 @@ export class ChatComponent implements OnInit, OnChanges {
     );
   }
   getAllMessagesFromChat() {
-    this.chatService
-      .getAllMessagesFromChat(this.authService.getUserName(), this.username)
-      .subscribe({
-        next: (data) => (this.messages = data),
-        error: (error) => console.log(error),
-      });
+    if (this.username != '') {
+      this.chatService
+        .getAllMessagesFromChat(this.authService.getUserName(), this.username)
+        .subscribe({
+          next: (data) => (this.messages = data),
+          error: (error) => console.log(error),
+        });
+    }
   }
 
   send() {
@@ -110,5 +114,9 @@ export class ChatComponent implements OnInit, OnChanges {
       .subscribe((data) => {
         this.messages.push(data);
       });
+  }
+
+  readMessages() {
+    this.read.emit(this.username);
   }
 }
