@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { UserService } from 'src/app/auth/user-profile/service/user.service';
 import { UserModel } from 'src/app/auth/user-profile/user-model';
@@ -41,20 +41,24 @@ export class InboxComponent implements OnInit {
           (this.username = this.inboxMessages[0].with)
         )
       );
-    /*this.chatService.sentMessage.subscribe((data: string) =>
-      this.getInboxMessages()
-    );*/
-    /*this.chatService.sentMessage.subscribe((data: string) => {
-      this.chatService
-        .getLastMessage(data, this.authService.getUserName())
-        .subscribe((data) => this.replaceWithSentMessage(data));
-    });*/
   }
 
   getMsgFromBaby($event: any) {
     this.msg = $event;
     console.log(this.msg);
     this.getInboxMessages();
+  }
+
+  readMessages($event: string) {
+    for (let i = 0; i < this.inboxMessages.length; i++) {
+      const element = this.inboxMessages[i];
+      if (element.with == $event && element.newMessages != 0) {
+        this.chatService.readMessages(element.with).subscribe(() => {
+          this.chatService.emitNumberOfSeenMessages(element.newMessages);
+          element.newMessages = 0;
+        });
+      }
+    }
   }
 
   replaceWithSentMessage(data: MessageDto) {
@@ -70,8 +74,11 @@ export class InboxComponent implements OnInit {
     }
   }
 
-  viewMessages(username: string) {
+  viewMessages(username: string, msg: InboxMessage) {
     this.username = username;
+    //emitovanje smanjena broja neprocitanih poruka
+    this.chatService.emitNumberOfSeenMessages(msg.newMessages);
+    msg.newMessages = 0;
   }
 
   getInboxMessages() {
