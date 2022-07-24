@@ -137,6 +137,7 @@ header {
   background-color: #1C9E5D;
   border: solid 1px;
   border-radius: 40%;
+  margin-right: 5px;
 }
 
 .not:hover {

@@ -49,9 +49,13 @@
           <fa-icon class="account-icon fa-lg" [icon]="faUser"></fa-icon>
           {{username}}
         </button>
+        <div class="d-inline-block float-left not-count" *ngIf="message_count!=0">
+          <p class="num">{{message_count}}</p>
+        </div>
         <a href="/inbox">
           <fa-icon class="inbox-icon fa-lg" [icon]="faInbox"></fa-icon>
         </a>
+
       </div>
       <div *ngIf="!isLoggedIn">
         <a routerLink="/sign-up" class="float-right sign-up mr-2">Sign up</a>
