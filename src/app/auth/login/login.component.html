@@ -5,6 +5,7 @@
       <div class="card">
         <div class="card-header" style="text-align: center">
           <h4>Login</h4>
+          <p *ngIf="showMessage">(If you just opened app please wait few seconds after you click login button!)</p>
         </div>
         <div class="card-body">
           <form [formGroup]="loginForm" (ngSubmit)="login()">

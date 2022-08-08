@@ -67,14 +67,16 @@ export class ChatComponent implements OnInit, OnChanges {
     );
   }
   getAllMessagesFromChat() {
-    if (this.username != '') {
-      this.chatService
-        .getAllMessagesFromChat(this.authService.getUserName(), this.username)
-        .subscribe({
-          next: (data) => (this.messages = data),
-          error: (error) => console.log(error),
-        });
+    if (this.username === undefined || this.username == '') {
+      return;
     }
+    console.log(this.username);
+    this.chatService
+      .getAllMessagesFromChat(this.authService.getUserName(), this.username)
+      .subscribe({
+        next: (data) => (this.messages = data),
+        error: (error) => console.log(error),
+      });
   }
 
   send() {

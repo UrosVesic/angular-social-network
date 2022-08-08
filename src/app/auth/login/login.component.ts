@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   loginRequestPayload: LoginRequestPayload;
   registerSuccessMessage: string;
   isError: boolean;
-  //proba
+  showMessage: boolean = false;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -38,16 +39,19 @@ export class LoginComponent implements OnInit {
         params['registered'] !== undefined &&
         params['registered'] === 'true'
       ) {
-        modals.customSuccessNotification('Succesfull registration, please check your email for verification')
+        modals.customSuccessNotification(
+          'Succesfull registration, please check your email for verification'
+        );
       }
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   login() {
     this.loginRequestPayload.username = this.loginForm.get('username')!.value;
     this.loginRequestPayload.password = this.loginForm.get('password')!.value;
+    this.showMessage = true;
 
     this.authService.login(this.loginRequestPayload).subscribe({
       next: (data) => this.router.navigateByUrl('/home'),
