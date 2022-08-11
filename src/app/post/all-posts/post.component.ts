@@ -60,7 +60,7 @@ export class PostComponent implements OnInit {
             next: (data) => (this.posts = data),
             error: (error) => console.log(error),
           }),
-      error: (error) => console.log(error),
+      error: (error) => this.modals.errorNotification('Failed to delete post'),
     });
   }
 
