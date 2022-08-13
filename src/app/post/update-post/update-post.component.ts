@@ -9,7 +9,7 @@ import { PostModel } from 'src/app/post/post-model';
 import { PostService } from 'src/app/post/service/post.service';
 import { TopicModel } from 'src/app/topic/topic-model';
 import { TopicService } from 'src/app/topic/topic.service';
-import { PostRequest } from '../create-post/post-request';
+import { PostRequest } from '../post-request';
 
 @Component({
   selector: 'app-update-post',
