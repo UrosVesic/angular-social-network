@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { UserService } from 'src/app/auth/user-profile/service/user.service';
-import { UserModel } from 'src/app/auth/user-profile/user-model';
+import { UserService } from 'src/app/user/service/user.service';
+import { UserModel } from 'src/app/user/user-model';
 import { __values } from 'tslib';
 import { AuthService } from 'src/app/auth/service/auth.service';
 

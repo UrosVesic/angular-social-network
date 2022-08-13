@@ -4,9 +4,9 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { throwError } from 'rxjs';
 import { PostModel } from 'src/app/post/post-model';
 import { PostService } from 'src/app/post/service/post.service';
-import { AuthService } from '../service/auth.service';
-import { UserService } from './service/user.service';
-import { UserModel } from './user-model';
+import { AuthService } from '../../../auth/service/auth.service';
+import { UserService } from '../../../user/service/user.service';
+import { UserModel } from '../../../user/user-model';
 
 @Component({
   selector: 'app-user-profile',

@@ -6,7 +6,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { LoginGuard } from './auth/login.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { UserProfileComponent } from './auth/user-profile/user-profile.component';
+import { UserProfileComponent } from './profile/user-profile/user-profile/user-profile.component';
 import { ChatComponent } from './chat/chat/chat.component';
 import { InboxComponent } from './chat/inbox/inbox/inbox.component';
 import { HomeComponent } from './home/home.component';

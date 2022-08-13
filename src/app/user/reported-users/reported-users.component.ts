@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/service/auth.service';
-import { UserService } from 'src/app/auth/user-profile/service/user.service';
-import { UserModel } from 'src/app/auth/user-profile/user-model';
+import { UserService } from 'src/app/user/service/user.service';
+import { UserModel } from 'src/app/user/user-model';
 import { ReportedUserModel } from './reported-user-model';
 
 @Component({
@@ -14,16 +14,19 @@ export class ReportedUsersComponent implements OnInit {
   username: string = '';
   searchText: string = '';
 
-  constructor(private userService: UserService, private authService: AuthService) {
+  constructor(
+    private userService: UserService,
+    private authService: AuthService
+  ) {
     this.getReportedUsers();
-
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   getReportedUsers() {
-    this.userService.getReportedUsers().subscribe((data) => (this.users = data, console.log(data))
-    )
+    this.userService
+      .getReportedUsers()
+      .subscribe((data) => ((this.users = data), console.log(data)));
   }
 
   onSearchTextEntered(searchValue: string) {
@@ -40,14 +43,14 @@ export class ReportedUsersComponent implements OnInit {
 
   disableUser(user: ReportedUserModel) {
     this.userService.disableUser(user.username).subscribe({
-      next: () => this.getReportedUsers()
-    })
+      next: () => this.getReportedUsers(),
+    });
   }
 
   enableUser(user: ReportedUserModel) {
     this.userService.enableUser(user.username).subscribe({
-      next: () => this.getReportedUsers()
-    })
+      next: () => this.getReportedUsers(),
+    });
   }
 
   isEnabled(user: ReportedUserModel) {

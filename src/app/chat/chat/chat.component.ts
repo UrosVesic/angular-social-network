@@ -13,7 +13,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/service/auth.service';
-import { UserModel } from 'src/app/auth/user-profile/user-model';
+import { UserModel } from 'src/app/user/user-model';
 import { StompService } from 'src/app/stomp-service';
 import { ChatService } from '../service/chat.service';
 import { MessageDto } from './message';

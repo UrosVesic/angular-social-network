@@ -10,7 +10,7 @@ import { UserModel } from '../user-model';
 })
 export class UserService {
   baseUrl = environment.baseUrl;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getProfileInfo(username: string): Observable<UserModel> {
     return this.http.get<UserModel>(
@@ -50,7 +50,9 @@ export class UserService {
   }
 
   getReportedUsers(): Observable<Array<ReportedUserModel>> {
-    return this.http.get<Array<ReportedUserModel>>(this.baseUrl + 'api/user/reported');
+    return this.http.get<Array<ReportedUserModel>>(
+      this.baseUrl + 'api/user/reported'
+    );
   }
 
   disableUser(username: string): Observable<any> {

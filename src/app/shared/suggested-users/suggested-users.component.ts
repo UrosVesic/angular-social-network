@@ -6,8 +6,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { throwError } from 'rxjs';
-import { UserService } from 'src/app/auth/user-profile/service/user.service';
-import { UserModel } from 'src/app/auth/user-profile/user-model';
+import { UserService } from 'src/app/user/service/user.service';
+import { UserModel } from 'src/app/user/user-model';
 
 @Component({
   selector: 'app-suggested-users',

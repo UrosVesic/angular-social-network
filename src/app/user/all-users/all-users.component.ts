@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/service/auth.service';
-import { UserService } from 'src/app/auth/user-profile/service/user.service';
-import { UserModel } from 'src/app/auth/user-profile/user-model';
+import { UserService } from 'src/app/user/service/user.service';
+import { UserModel } from 'src/app/user/user-model';
 
 @Component({
   selector: 'app-all-users',
