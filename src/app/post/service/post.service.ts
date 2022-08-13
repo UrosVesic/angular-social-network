@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { PostRequest } from '../create-post/post-request';
+import { PostRequest } from '../post-request';
 import { PostModel } from '../post-model';
 import { ReportedPostModel } from '../reported-post-model';
 

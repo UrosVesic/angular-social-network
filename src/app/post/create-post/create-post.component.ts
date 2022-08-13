@@ -6,7 +6,7 @@ import { Modals } from 'src/app/modals';
 import { PostService } from 'src/app/post/service/post.service';
 import { TopicModel } from 'src/app/topic/topic-model';
 import { TopicService } from 'src/app/topic/topic.service';
-import { PostRequest } from './post-request';
+import { PostRequest } from '../post-request';
 
 @Component({
   selector: 'app-create-post',
