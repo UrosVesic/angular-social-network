@@ -10,6 +10,7 @@ import { TopicService } from '../topic.service';
 })
 export class ListTopicsComponent implements OnInit {
   topics: Array<TopicModel> = [];
+  searchText: string = '';
 
   constructor(private topicService: TopicService) {}
 
@@ -22,5 +23,17 @@ export class ListTopicsComponent implements OnInit {
         throwError(() => error);
       },
     });
+  }
+
+  onSearchTextEntered(searchValue: string) {
+    this.searchText = searchValue;
+    console.log(searchValue);
+  }
+
+  searchMatch(topic: TopicModel) {
+    if (this.searchText == '') {
+      return true;
+    }
+    return topic.name.toLowerCase().includes(this.searchText);
   }
 }
