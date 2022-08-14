@@ -17,6 +17,12 @@ export class PostService {
     return this.httpClient.get<Array<PostModel>>(this.baseUrl + 'api/post/all');
   }
 
+  getAllPostsForTopic(topicName: string): Observable<Array<PostModel>> {
+    return this.httpClient.get<Array<PostModel>>(
+      this.baseUrl + 'api/post/topic/' + topicName
+    );
+  }
+
   getAllPostsForUser(username: string): Observable<Array<PostModel>> {
     return this.httpClient.get<Array<PostModel>>(
       this.baseUrl + 'api/post/user/' + username
