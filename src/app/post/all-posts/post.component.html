@@ -6,7 +6,8 @@
     <!-- Section to Display Post Information-->
     <div class="col-md-10">
       <div><span class="topic-info">
-          <span class="topic-text"><a class="posturl" routerLink="">{{post.topicName}}</a></span>
+          <span class="topic-text"><a class="posturl"
+              routerLink="/topic-posts/{{post.topicName}}">{{post.topicName}}</a></span>
           <span> . Posted by <a class="username"
               routerLink="/user-profile/{{post.userName}}">{{post.userName}}</a></span>
           <span> . {{post.duration}}</span>

@@ -1,15 +1,12 @@
 <div class="container">
-  <div class="row">
-    <hr />
-    <div class="col-md-9">
-      <h2>List of Topics</h2>
-      <ul>
-        <li *ngFor="let topic of topics"><a routerLink="/view-topic/{{topic.id}}">{{topic.name}}</a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-3">
-      <app-side></app-side>
+  <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+
+  <div class="row" *ngFor="let topic of topics">
+    <div class="col center" *ngIf="searchMatch(topic)"><a class="username" href="/topic-posts/{{topic.name}}">
+        @{{topic.name}}</a>
+      <br>
+      Description: {{topic.description}}
+      <hr />
     </div>
   </div>
 </div>
