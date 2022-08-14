@@ -17,6 +17,7 @@ import { ChangeProfileComponent } from './profile/change-profile/change-profile.
 import { CreateTopicComponent } from './topic/create-topic/create-topic.component';
 import { ListTopicsComponent } from './topic/list-topics/list-topics.component';
 import { AllUsersComponent } from './user/all-users/all-users.component';
+import { TopicPostsComponent } from './post/topic-posts/topic-posts.component';
 
 const routes: Routes = [
   { path: 'sign-up', component: SignupComponent },
@@ -36,6 +37,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'list-topics', component: ListTopicsComponent },
+  {
+    path: 'topic-posts/:topic-name',
+    component: TopicPostsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'view-post/:id', component: ViewPostComponent },
   { path: 'update-post/:id', component: UpdatePostComponent },
   { path: 'all-users/:info', component: AllUsersComponent },
