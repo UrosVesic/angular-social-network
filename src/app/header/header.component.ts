@@ -28,10 +28,7 @@ export class HeaderComponent implements OnInit {
   faExclamation = faExclamation;
   isLoggedIn: boolean;
   username: string;
-  location: Location = {
-    city: '',
-    country_name: '',
-  };
+
   notifications: NotificationModel[] = [];
   notification_count: number = 0;
   message_count: number = 0;
@@ -45,7 +42,9 @@ export class HeaderComponent implements OnInit {
   ) {
     this.username = '';
     this.isLoggedIn = this.authService.isLogged();
-    this.getNumberOfNewMsg();
+    if (this.isLoggedIn) {
+      this.getNumberOfNewMsg();
+    }
   }
 
   ngOnInit(): void {
@@ -63,9 +62,7 @@ export class HeaderComponent implements OnInit {
           }
         }
       );
-      this.getAllNotifications();
     }
-
     this.authService.loggedIn.subscribe(
       (data: boolean) => ((this.isLoggedIn = data), this.updateHeader(data))
     );
@@ -75,9 +72,7 @@ export class HeaderComponent implements OnInit {
     this.authService.username.subscribe(
       (data: string) => (this.username = data)
     );
-    this.authService.locatioEmmiter.subscribe(
-      (data: Location) => (this.location = data)
-    );
+
     this.isLoggedIn = this.authService.isLogged();
     this.username = this.authService.getUserName();
   }
