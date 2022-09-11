@@ -23,7 +23,6 @@ import { ChatService } from '../chat/service/chat.service';
 })
 export class HeaderComponent implements OnInit {
   faUser = faUser;
-  faLoc = faLocationDot;
   faInbox = faInbox;
   faBell = faBell;
   faExclamation = faExclamation;
@@ -50,26 +49,25 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('/topic/notification/' + this.authService.getUserName());
-    this.stomp.subscribe(
-      '/topic/notification/' + this.authService.getUserName(),
-      (msg: Frame) => {
-        if (msg.body == 'notification') {
-          this.getLastNotification();
-          this.notification_count = this.computeNotificationCount();
+    if (this.authService.isLogged()) {
+      console.log('/topic/notification/' + this.authService.getUserName());
+      this.stomp.subscribe(
+        '/topic/notification/' + this.authService.getUserName(),
+        (msg: Frame) => {
+          if (msg.body == 'notification') {
+            this.getLastNotification();
+            this.notification_count = this.computeNotificationCount();
+          }
+          if (msg.body == 'message') {
+            this.message_count++;
+          }
         }
-        if (msg.body == 'message') {
-          this.message_count++;
-        }
-      }
-    );
-    this.getAllNotifications();
+      );
+      this.getAllNotifications();
+    }
+
     this.authService.loggedIn.subscribe(
-      (data: boolean) => (
-        (this.isLoggedIn = data),
-        this.getAllNotifications(),
-        this.getNumberOfNewMsg()
-      )
+      (data: boolean) => ((this.isLoggedIn = data), this.updateHeader(data))
     );
     this.chatService.numberOfSeenMessages.subscribe(
       (data: number) => (this.message_count = this.message_count - data)
@@ -82,6 +80,13 @@ export class HeaderComponent implements OnInit {
     );
     this.isLoggedIn = this.authService.isLogged();
     this.username = this.authService.getUserName();
+  }
+
+  updateHeader(data: boolean) {
+    if (data) {
+      this.getAllNotifications();
+      this.getNumberOfNewMsg();
+    }
   }
 
   computeNotificationCount(): number {
