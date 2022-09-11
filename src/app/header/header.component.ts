@@ -29,10 +29,7 @@ export class HeaderComponent implements OnInit {
   faExclamation = faExclamation;
   isLoggedIn: boolean;
   username: string;
-  location: Location = {
-    city: '',
-    country_name: '',
-  };
+  
   notifications: NotificationModel[] = [];
   notification_count: number = 0;
   message_count: number = 0;
@@ -46,29 +43,32 @@ export class HeaderComponent implements OnInit {
   ) {
     this.username = '';
     this.isLoggedIn = this.authService.isLogged();
+    if(this.isLoggedIn){
     this.getNumberOfNewMsg();
+    }
   }
 
   ngOnInit(): void {
+    if(this.authService.isLogged()){
     console.log('/topic/notification/' + this.authService.getUserName());
-    this.stomp.subscribe(
-      '/topic/notification/' + this.authService.getUserName(),
-      (msg: Frame) => {
-        if (msg.body == 'notification') {
-          this.getLastNotification();
-          this.notification_count = this.computeNotificationCount();
+      this.stomp.subscribe(
+        '/topic/notification/' + this.authService.getUserName(),
+        (msg: Frame) => {
+          if (msg.body == 'notification') {
+            this.getLastNotification();
+            this.notification_count = this.computeNotificationCount();
+          }
+          if (msg.body == 'message') {
+            this.message_count++;
+          }
         }
-        if (msg.body == 'message') {
-          this.message_count++;
-        }
-      }
-    );
-    this.getAllNotifications();
+      );
+    }
+    
     this.authService.loggedIn.subscribe(
       (data: boolean) => (
         (this.isLoggedIn = data),
-        this.getAllNotifications(),
-        this.getNumberOfNewMsg()
+        this.updateHeader(data)
       )
     );
     this.chatService.numberOfSeenMessages.subscribe(
@@ -77,9 +77,7 @@ export class HeaderComponent implements OnInit {
     this.authService.username.subscribe(
       (data: string) => (this.username = data)
     );
-    this.authService.locatioEmmiter.subscribe(
-      (data: Location) => (this.location = data)
-    );
+    
     this.isLoggedIn = this.authService.isLogged();
     this.username = this.authService.getUserName();
   }
@@ -94,6 +92,14 @@ export class HeaderComponent implements OnInit {
     }
     return count;
   }
+
+updateHeader(data:boolean){
+  if(data){
+    this.getAllNotifications(),
+        this.getNumberOfNewMsg()  
+  }
+  
+}
 
   goToUserProfile() {
     this.router.navigateByUrl('/user-profile/' + this.username);
