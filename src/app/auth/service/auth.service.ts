@@ -48,21 +48,6 @@ export class AuthService {
           this.localStorage.store('isAdmin', data.isAdmin);
           this.loggedIn.emit(true);
           this.username.emit(loginRequestPayload.username);
-          this.httpClient
-            .get<Ip>(
-              'https://thingproxy.freeboard.io/fetch/https://api.ipify.org/?format=json'
-            )
-            .subscribe((data) =>
-              this.httpClient
-                .get<Location>(
-                  'https://thingproxy.freeboard.io/fetch/http://api.ipapi.com/' +
-                    data.ip +
-                    '?access_key=74a6d5c01f8c34382fa36ff569c603b4'
-                )
-                .subscribe((data) => {
-                  (this.location = data), this.locatioEmmiter.emit(data);
-                })
-            );
 
           return true;
         })
