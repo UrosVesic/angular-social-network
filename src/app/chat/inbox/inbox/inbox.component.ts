@@ -21,7 +21,6 @@ export class InboxComponent implements OnInit {
   constructor(
     private chatService: ChatService,
     private authService: AuthService,
-    private stomp: StompService,
     private userService: UserService
   ) {
     this.msg = {

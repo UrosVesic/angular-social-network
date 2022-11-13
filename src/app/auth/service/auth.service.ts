@@ -64,6 +64,10 @@ export class AuthService {
   logout() {
     this.localStorage.clear();
     this.loggedIn.emit(false);
+    this.httpClient.post(this.baseUrl+'api/auth/logout','').subscribe({
+      next: () => (console.log('ok')),
+      error: (error) => console.log('error'),
+    })
   }
 
   isAdmin(): boolean {

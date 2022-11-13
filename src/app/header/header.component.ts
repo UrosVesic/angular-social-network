@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
   faExclamation = faExclamation;
   isLoggedIn: boolean;
   username: string;
-
   notifications: NotificationModel[] = [];
   notification_count: number = 0;
   message_count: number = 0;
@@ -44,12 +43,16 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn = this.authService.isLogged();
     if (this.isLoggedIn) {
       this.getNumberOfNewMsg();
+
     }
   }
 
   ngOnInit(): void {
+    console.log('reinicijalizacija headera')
     if (this.authService.isLogged()) {
+      this.updateHeader(this.authService.isLogged());
       console.log('/topic/notification/' + this.authService.getUserName());
+
       this.stomp.subscribe(
         '/topic/notification/' + this.authService.getUserName(),
         (msg: Frame) => {
@@ -65,6 +68,7 @@ export class HeaderComponent implements OnInit {
     }
     this.authService.loggedIn.subscribe(
       (data: boolean) => ((this.isLoggedIn = data), this.updateHeader(data))
+
     );
     this.chatService.numberOfSeenMessages.subscribe(
       (data: number) => (this.message_count = this.message_count - data)

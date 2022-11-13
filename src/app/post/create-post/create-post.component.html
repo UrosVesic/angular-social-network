@@ -14,7 +14,7 @@
             <option value="" selected disabled>Select Topic</option>
             <option *ngFor="let topic of topics">{{topic.name}}</option>
           </select>
-          Can't find appropriate topic? <a href="/create-topic">Create one!</a>
+          Can't find appropriate topic? <a routerLink="/create-topic">Create one!</a>
 
           <editor [formControlName]="'content'" [init]="{
                         height: 500,
